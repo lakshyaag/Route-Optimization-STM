@@ -1,0 +1,108 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+% Document information
+\title{Disaster Route Planning}
+\author{Group 3 - Lakshya A., Arnav G., Om S., Nandani Y., Michael M.}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section{Key idea}\label{key-idea}
+
+Disasters, whether natural or man-made, often disrupt regular transit
+networks and create a pressing need for efficient and adaptive routing
+solutions. Our goal is to create an optimization system that can
+dynamically adjust transit routes by identifying and removing affected
+nodes during disasters, ensuring the continuity of essential services
+and minimizing disruption.
+
+\section{Data sources}\label{data-sources}
+
+\subsection{GTFS feeds}\label{gtfs-feeds}
+
+The General Transit Feed Specification (GTFS) is a standardized data
+format that allows transit agencies to publish their scheduling and
+routing information. This data format provides extensive details about
+public transit operations, including routes, stops, schedules, and more.
+We plan on downloading the GTFS data from
+\href{https://www.stm.info/en/about/developers}{Société de transport de
+      Montréal} and parsing through bus routes to identify the nodes.
+
+\subsection{Disaster data}\label{disaster-data}
+The \href{https://www.publicsafety.gc.ca/cnt/rsrcs/cndn-dsstr-dtbs/index-en.aspx}{Canadian
+      Disaster Database (CDD)} is a comprehensive repository that archives
+significant disaster events across the country. To depict the impact of
+disaster, we plan to take flooding events as an example. To represent
+the impacted areas during floods, we'll depict them as bounding boxes,
+and disable nodes inside the bounding box.
+
+\section{Implementation details}\label{implementation-details}
+
+For a public transit network, it is crucial to have a robust evacuation
+plan, especially for citizens without personal vehicles. We will attempt
+to tackle this by optimizing evacuation routes using buses. Our model
+extends the
+\textbf{\href{https://en.wikipedia.org/wiki/Travelling_salesman_problem}{Travelling
+            Salesman Problem}} to cater to this unique situation.
+
+\subsection{Assumptions}\label{assumptions}
+
+\begin{enumerate}
+      \item
+            The fleet size is predetermined
+      \item
+            There exists a single, designated drop-off location that is deemed
+            safe for evacuees
+      \item
+            Bus stops act as both pick-up and drop-off points
+\end{enumerate}
+
+\subsection{Parameters}\label{parameters}
+\begin{enumerate}
+      \item
+            A list of nodes rendered inaccessible due to the disaster
+      \item
+            Time required to travel from node $i$ to $j$
+      \item
+            Calculated distance between each node (based on geospatial data)
+\end{enumerate}
+\subsection{LP formulation}\label{lp-formulation}
+
+\subsubsection{Decision variables}\label{decision-variables}
+Binary variables $X_{ij}$ indicating if vehicle should go from node $i$ to $j$
+
+\subsubsection{Objective function}\label{objective-function}
+Minimize the travel time from the evacuation point to the safety point, ensuring evacuees are transported in the shortest possible time.
+$$
+      \min \quad \sum_{i}\sum_{j} T_{ij} X_{ij}
+$$
+
+\subsubsection{Constraints}\label{constraints}
+\begin{enumerate}
+
+      \item
+            A limited number of buses are available for evacuation.
+      \item
+            The evacuation route adapts based on the disaster's impact, removing
+            affected nodes from the path.
+      \item
+            Each pick-up spot is visited only once to prevent redundancy.
+      \item
+            Subtour elimination to prevent cyclic routes that don't lead to the
+            destination.
+\end{enumerate}
+
+\section{Conclusion}\label{conclusion}
+
+The above framework represents our initial insights and approach.
+However, as we delve deeper into the data and understand the nuances of
+the transit network, our approach may evolve.
+\end{document}
