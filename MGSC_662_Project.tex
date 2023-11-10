@@ -1,0 +1,142 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx} % For including graphics
+\usepackage{titling} % For customizing the title section
+\usepackage{color}
+\usepackage[margin=1in]{geometry} % For page margins
+\usepackage{graphicx} % For including graphics
+\usepackage{hyperref} % For hyperlinks in the table of contents
+\usepackage{graphicx} % For including graphics
+\usepackage{hyperref} % For hyperlinks in the table of contents
+\usepackage{amsmath} % For mathematical formulas
+\usepackage{listings} % For code listings
+\usepackage{xcolor} % For coloring code
+\usepackage{amsfonts} % For mathematical fonts
+\usepackage{amssymb} % For mathematical symbols
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{bm}
+
+
+% Your title here
+\title{Disaster Route Planning}
+\author{} % Empty author to remove it from title area
+\date{} % Empty date to remove it from title area
+
+% Begin Document
+\begin{document}
+
+% Title Page
+\begin{titlepage}
+   \centering
+   \vspace*{1 cm}
+   \textbf{\Large Disaster Route Planning in Montreal}\\[2 cm] % Title of your document
+   \includegraphics[scale=0.5]{mcgill_logo.png}\\[1 cm] % Replace with your college logo
+   \textbf{Group 3:}\\[0.5 cm]
+   Arnav G. -- 260658711\\
+   Lakshya A. -- 261149449\\
+   Michael M. -- 261060598\\
+   Nandani Y. -- 261137002\\
+   Om S. -- 261112933\\[1 cm]
+   \textbf{MGSC 662 Decision Analytics}\\[0.5 cm]
+   Professor Javad Nasiry\\[1 cm]
+   \textbf{Desautels Faculty of Management}\\
+    \textbf{McGill University}\\[2 cm]
+    \textcolor{red}{\hrulefill}\\[0.5 cm]
+\end{titlepage}
+
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+
+% Introduction
+\section{Introduction}
+The orchestration of emergency evacuations in the wake of disasters is a complex challenge that demands rapid, strategic, and efficient decision-making. Central to this challenge is the task of transportation logistics—specifically, the optimal routing of buses to pick up stranded individuals and transport them to designated shelters. This paper introduces an advanced optimization system tailored for such high-stakes scenarios, aiming to improve the efficacy of disaster response through intelligent route planning.
+
+In the throes of emergency situations, the conventional function of transit networks is disrupted, necessitating a swift pivot to evacuation mode. The criticality of this function cannot be overstated; delays in evacuation can exacerbate the human toll of disasters. Despite the urgency, evacuation route planning is frequently hampered by static and inflexible models, which fail to accommodate the dynamic and unpredictable nature of unfolding crises.
+
+The city of Montreal, with its intricate network of transit routes, stands as a prime example of an urban landscape where efficient disaster response is crucial. The city's dense population and unique geography present distinct challenges for disaster management—challenges that require innovative solutions to ensure rapid and safe evacuation. The existing transit systems, although robust under normal circumstances, may become compromised during disasters as certain nodes or pathways become impassable. Such eventualities call for a system that not only predicts these changes but also adapts to them in real-time.
+
+In this study, the Vehicle Routing Problem (VRP) is specifically tailored to address the efficient utilization of buses during disaster-induced evacuations. The focus is on minimizing the total distance traveled, which is a crucial factor in reducing evacuation times and potentially saving lives. In the densely woven urban fabric of Montreal, the optimization of routes becomes a pivotal aspect of disaster response, as every kilometer saved translates directly into precious minutes gained during emergency evacuations. This consideration is particularly vital given the city's susceptibility to a range of disasters, where road closures and infrastructural damage can impede accessibility and mobility. By optimizing for minimum distance, the proposed VRP model aims to streamline the evacuation process, ensuring that the maximum number of individuals are transported to safety in the least amount of time, all while navigating the constraints imposed by a disaster-affected transit network.% Methodology
+
+\section{Methodology}
+
+This section outlines the methodological framework adopted to construct an optimized Vehicle Routing Problem (VRP) model for effective disaster evacuation route planning in Montreal. The methodology encompasses data collection and preparation, model construction, the optimization process, and a comprehensive set of constraints designed to ensure the practicality and feasibility of the proposed evacuation routes.
+
+\subsection{Data Collection and Preparation}
+
+Comprehensive data collection forms the foundation of the VRP model. We utilized the General Transit Feed Specification (GTFS) for detailed transit routes, schedules, and stop information. Canadian Disaster Database (CDD) data was utilized to simulate potential disaster scenarios accurately. Additionally, road distances between all nodes were obtained via the OpenStreetMap (OSMnx) python package, providing vital information on the actual travel distances within the city's road network. This integration of OSM data ensures that the model's distance calculations are grounded in real-world geography and current road conditions. The collected data was extensively cleaned and preprocessed to ensure compatibility with the modeling environment and to establish a reliable baseline for the optimization process.
+
+\subsection{Model Building}
+
+In this section, we detail the construction of a Vehicle Routing Problem (VRP) model aimed at optimizing disaster evacuation routes within the urban context of Montreal. The model seeks to identify the shortest possible routes for a fleet of buses tasked with evacuating residents to designated shelters, taking into account the constraints imposed by potential disaster scenarios that affect the city's transit network.
+
+\subsubsection{Decision Variables}
+
+The model employs two types of decision variables: \( x_{ijk} \) which is binary and indicates whether bus \( k \) travels from node \( i \) to node \( j \), and \( u_i \) which represents the load (number of passengers) at stop \( i \). 
+
+\[
+x_{ijk} = 
+\begin{cases}
+1, & \text{if bus } k \text{ travels from node } i \text{ to node } j,\\
+0, & \text{otherwise}.
+\end{cases}
+\]
+
+\[
+u_i \in \mathbb{Z}^+, \quad \forall i \in \text{number\_of\_stops}.
+\]
+
+\subsubsection{Objective Function}
+
+The objective of the model is to minimize the total distance traveled by all buses, thus expediting the evacuation process and enhancing the overall efficiency of disaster response.
+
+\[
+\min \sum_{i \in \text{number\_of\_stops}} \sum_{j \in \text{number\_of\_stops}} \sum_{k=1}^{\text{num\_buses}} \text{distance}_{ij} \cdot x_{ijk}.
+\]
+
+\subsubsection{Constraints}
+
+The model's constraints ensure that the evacuation routes are both feasible and efficient, given the operational and safety requirements.
+
+\paragraph{Node Transition Constraint:} This constraint ensures that if a vehicle arrives at a node, it must also leave that node, preventing any vehicle from remaining indefinitely at any location within the network.
+
+\[
+\sum_{j \in \text{number\_of\_stops}} x_{jik} = \sum_{j \in \text{number\_of\_stops}} x_{ijk}, \quad \forall i \in \text{number\_of\_stops}, k \in \text{num\_buses}.
+\]
+
+\paragraph{Node Visit Constraint:} Each node, representing a pick-up location, must be visited exactly once by the fleet, guaranteeing that no location is overlooked during the evacuation.
+
+\[
+\sum_{i \in \text{number\_of\_stops}} \sum_{k=1}^{\text{num\_buses}} x_{ijk} = 1, \quad \forall j \in \text{number\_of\_stops} \setminus \{ \text{depot} \}.
+\]
+
+\paragraph{Depot Departure Constraint:} This constraint limits each bus to a single departure from the depot, aligning with the one-way nature of the evacuation trips.
+
+\[
+\sum_{j \in \text{number\_of\_stops} \setminus \{ \text{depot} \}} x_{\text{depot}jk} \leq 1, \quad \forall k \in \text{num\_buses}.
+\]
+
+\paragraph{Capacity Constraint:} To adhere to safety standards and legal regulations, the model ensures that the number of evacuees on a bus does not exceed its seating capacity.
+
+\[
+\sum_{j \in \text{number\_of\_stops} \setminus \{ \text{depot} \}} \sum_{i \in \text{number\_of\_stops}} \text{demand}_j \cdot x_{ijk} \leq \text{bus\_capacity}, \quad \forall k \in \text{num\_buses}.
+\]
+
+\paragraph{No Same Node Travel Constraint:} Buses are not allowed to travel from and to the same node, preventing unnecessary loops in the routes.
+
+\[
+x_{iik} = 0, \quad \forall i \in \text{number\_of\_stops}, k \in \text{num\_buses}.
+\]
+
+\paragraph{Subtour Elimination Constraint:} This constraint ensures that the solution does not contain any subtours, which are smaller loops within a route that do not lead to the final destination. This is critical for maintaining the efficiency of the evacuation process.
+
+\begin{equation*}
+u_j - u_i \geq \text{demand}_j - \text{bus\_capacity} \cdot (1 - x_{ijk}), \quad \forall i, j \in \text{number\_of\_stops} \setminus \{ \text{depot} \}, i \neq j, k \in \text{num\_buses}
+\end{equation*}
+
+
+
+\end{document}
