@@ -1,6 +1,4 @@
-import streamlit as st
 import numpy as np
-import pandas as pd
 
 
 # ---- GEOMETRIC SPLIT ----
@@ -99,7 +97,8 @@ def reconstruct_demand(demand, BUS_CAPACITY, rng, split_type: str = "geometric")
     return new_demand, nodes_exceeding_demand
 
 
-# Update distance matrix to include split nodes. Distance between split nodes of same parent node is 0
+# Update distance matrix to include split nodes.
+# Distance between split nodes of same parent node is 0
 def update_distance_matrix(distance_matrix, nodes_exceeding_demand, new_demand):
     distance_matrix_model = distance_matrix.copy()
 

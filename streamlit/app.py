@@ -1,13 +1,12 @@
-import streamlit as st
-from streamlit_extras.grid import grid
-from streamlit_extras.row import row
-import pandas as pd
 import os
+
 import load
 import maps
 import model
+import pandas as pd
+from streamlit_folium import folium_static, st_folium
 
-from streamlit_folium import st_folium, folium_static
+import streamlit as st
 
 # Session state
 if "depot_location" not in st.session_state:
@@ -15,6 +14,12 @@ if "depot_location" not in st.session_state:
 
 if "disaster_area" not in st.session_state:
     st.session_state.disaster_area = None
+
+if "model_solved" not in st.session_state:
+    st.session_state.model_solved = False
+
+if "model_" not in st.session_state:
+    st.session_state.model_solved = None
 
 # Page configuration
 st.set_page_config(page_title="Route Optimization Model", layout="wide")
@@ -162,7 +167,9 @@ if IS_DATA_LOADED:
         and st.session_state["disaster_area"] is not None
     ):
         with st.expander("**Solve model**"):
-            solve_model = st.button("Solve model", type="primary")
+            solve_model = st.button(
+                "Solve model", type="primary", use_container_width=True
+            )
 
             if solve_model:
                 with st.spinner("Solving model..."):
@@ -171,6 +178,7 @@ if IS_DATA_LOADED:
                         random_stops_df_gpd,
                         distance_matrix,
                         NUM_BUSES,
+                        disaster_area,
                         stops_in_disaster_area,
                         BUS_CAPACITY,
                         DEMAND_LIMIT,
@@ -181,4 +189,38 @@ if IS_DATA_LOADED:
                         LOG_TO_CONSOLE,
                     )
 
-                    st.write(model_)
+                    st.session_state["model_solved"] = True
+                    st.session_state["model_"] = model_
+
+        if st.session_state["model_solved"]:
+            model_ = st.session_state["model_"]
+            with st.expander("**Show solved network**"):
+                st.markdown(
+                    f"`Total distance travelled: {model_['model'].objVal:.2f} kms`"
+                )
+
+                st.markdown(
+                    f"`Number of buses used: {model_['bus_path_df'].bus.nunique()}`"
+                )
+
+                st.markdown("#### **Optimal route map**")
+                folium_static(
+                    model_["route_map"],
+                    width=1000,
+                    height=500,
+                )
+
+                st.markdown("#### **Routes**")
+                for path, route in model_["paths"].items():
+                    stop_names = random_stops_df_gpd[
+                        random_stops_df_gpd["stop_id"].isin(
+                            [r.split("_")[0] for r in route]
+                        )
+                    ].loc[:, "stop_name"]
+
+                    if len(stop_names) > 1:
+                        st.markdown(
+                            f"`Route {path}: {' >> '.join(stop_names)} >> Depot`"
+                        )
+                    else:
+                        st.write(route)

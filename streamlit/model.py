@@ -1,14 +1,14 @@
+import geopandas as gpd
+import gurobipy as gb
+import maps
+import matplotlib.pyplot as plt
+import networkx as nx
 import numpy as np
 import pandas as pd
-import streamlit as st
-import gurobipy as gb
-
-import networkx as nx
-import matplotlib.pyplot as plt
-import matplotlib.colors as mcolors
-import geopandas as gpd
-from shapely.geometry import Point, LineString
 import split
+from shapely.geometry import LineString, Point
+
+import streamlit as st
 
 
 def define_model(
@@ -20,7 +20,7 @@ def define_model(
     DISTANCE_THRESHOLD: float = 5.0,
     **params,
 ):
-    # ----------------------------------------------------------------------------------------------
+    # ---------------------------------------------------------
     # Model
 
     model = gb.Model("Bus Routing")
@@ -29,7 +29,7 @@ def define_model(
     model.Params.MIPFocus = params.get("MIPFocus", 1)
     model.Params.LogToConsole = params.get("LogToConsole", 1)
 
-    # ----------------------------------------------------------------------------------------------
+    # ---------------------------------------------------------
     # Decision Variables
 
     x = model.addVars(
@@ -48,7 +48,7 @@ def define_model(
         name=(f"Load at Stop {i}" for i in stops),
     )
 
-    # ----------------------------------------------------------------------------------------------
+    # ---------------------------------------------------------
     # Objective Function
     model.setObjective(
         gb.quicksum(
@@ -60,7 +60,7 @@ def define_model(
         gb.GRB.MINIMIZE,
     )
 
-    # ----------------------------------------------------------------------------------------------
+    # ---------------------------------------------------------
     # Constraints
 
     # Vehicle leaves nodes that it enters
@@ -138,7 +138,7 @@ def define_model(
         name="Distance between two travel nodes is less than a specified distance",
     )
 
-    # ----------------------------------------------------------------------------------------------
+    # ---------------------------------------------------------
     # Solve model
     model._vars = x
     model.update()
@@ -151,6 +151,7 @@ def solve_model(
     stops_df,
     distance_matrix,
     num_buses,
+    disaster_area,
     stops_in_disaster_area,
     BUS_CAPACITY,
     DEMAND_LIMIT: int = 100,
@@ -178,6 +179,9 @@ def solve_model(
     st.markdown(f"`Total demand: {sum(demand.values())}`")
     st.markdown(f"`Total capacity: {num_buses * BUS_CAPACITY}`")
 
+    if sum(demand.values()) > num_buses * BUS_CAPACITY:
+        st.error("⛔ Total demand exceeds total capacity")
+
     new_demand, nodes_exceeding_demand = split.reconstruct_demand(
         demand, BUS_CAPACITY, rng, split_type
     )
@@ -196,7 +200,7 @@ def solve_model(
 
     st.markdown(f"`Total number of stops: {num_stops}`")
     st.markdown(
-        f"`Total number of new stops (including splits of type = {split_type}): {num_new_stops}`"
+        f"`Total number of new stops (including splits of type = {split_type}): {num_new_stops}`"  # noqa: E501
     )
 
     model = define_model(
@@ -225,15 +229,31 @@ def solve_model(
     )
 
     network_plots = plot_networkx_bus(bus_path_df)
-    st.write(network_plots)
 
     routes_gdf = build_route_df(bus_path_df, depot)
 
-    # route_map = plot_routes(
-    #     distance_matrix, bus_path_df, routes_gdf, num_buses, split_type
-    # )
+    route_map = maps.plot_routes(
+        distance_matrix,
+        disaster_area,
+        stops_in_disaster_area,
+        bus_path_df,
+        routes_gdf,
+        num_buses,
+        split_type,
+    )
 
     return {
+        "params": {
+            "NUM_STOPS": num_stops,
+            "NUM_BUSES": num_buses,
+            "BUS_CAPACITY": BUS_CAPACITY,
+            "DEMAND_LIMIT": DEMAND_LIMIT,
+            "DISTANCE_THRESHOLD": DISTANCE_THRESHOLD,
+            "MIPGap": MIPGap,
+            "TimeLimit": TimeLimit,
+            "MIPFocus": MIPFocus,
+            "LogToConsole": LogToConsole,
+        },
         "split_type": split_type,
         "demand": demand,
         "new_demand": new_demand,
@@ -243,7 +263,7 @@ def solve_model(
         "paths": paths,
         "network_plots": network_plots,
         "routes_gdf": routes_gdf,
-        # "route_map": route_map,
+        "route_map": route_map,
     }
 
 
@@ -394,7 +414,7 @@ def plot_networkx_bus(bus_path_df):
             g, pos, edge_labels=nx.get_edge_attributes(g, "demands")
         )
 
-        plots[bus] = fig
+        plots[int(bus)] = fig
 
     plt.close("all")
     return plots
