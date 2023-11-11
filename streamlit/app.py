@@ -1,0 +1,184 @@
+import streamlit as st
+from streamlit_extras.grid import grid
+from streamlit_extras.row import row
+import pandas as pd
+import os
+import load
+import maps
+import model
+
+from streamlit_folium import st_folium, folium_static
+
+# Session state
+if "depot_location" not in st.session_state:
+    st.session_state.depot_location = None
+
+if "disaster_area" not in st.session_state:
+    st.session_state.disaster_area = None
+
+# Page configuration
+st.set_page_config(page_title="Route Optimization Model", layout="wide")
+
+st.sidebar.header("Model parameters")
+# Use sliders, number inputs, etc., to get user input
+with st.sidebar:
+    NUM_BUSES = st.number_input("Number of Buses", min_value=1, value=15)
+    BUS_CAPACITY = st.number_input("Bus Capacity", min_value=1, value=80)
+    DEMAND_LIMIT = st.number_input("Demand Limit", min_value=1, value=120)
+    DISTANCE_THRESHOLD = st.slider(
+        "Distance threshold (in kms)", min_value=1, max_value=10, value=5
+    )
+    TIME_LIMIT = st.slider(
+        "Time Limit (in seconds)", min_value=60, max_value=300, value=180
+    )
+    LOG_TO_CONSOLE = st.selectbox(
+        "Log to Console", [0, 1], 1, format_func=lambda x: "Yes" if x == 1 else "No"
+    )
+    SPLIT_TYPE = st.selectbox(
+        "Split Type",
+        ["geometric", "capacity", "random"],
+        0,
+        format_func=lambda x: x.lower().capitalize(),
+    )
+
+
+st.title("Route Optimization Model")
+
+stops_file = "./stops.csv"
+segments_file = "./segments.csv"
+
+IS_DATA_LOADED = False
+
+
+if os.path.exists(stops_file) and os.path.exists(segments_file):
+    # Load data
+    stops_df = pd.read_csv(stops_file)
+    segments_df = pd.read_csv(segments_file)
+
+    segments_df[["route_id", "start_stop_id", "end_stop_id"]] = segments_df[
+        ["route_id", "start_stop_id", "end_stop_id"]
+    ].astype(str)
+
+    IS_DATA_LOADED = True
+
+else:
+    st.error("File path(s) not found. Please check the file paths.")
+
+
+if IS_DATA_LOADED:
+    route_list = ["24", "51", "67", "18", "33", "45", "80"]
+
+    stops_df_gpd = load.get_stops_on_route(route_list, segments_df, stops_df)
+
+    random_stops_df_gpd = load.get_random_stops(stops_df_gpd, 20)
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        # Add depot
+        with st.expander("**Add a depot location**"):
+            add_depot = st.button(
+                "Add depot", use_container_width=True, key="add_depot", type="primary"
+            )
+
+            m = maps.add_depot_map(random_stops_df_gpd)
+            depot_location = st_folium(
+                m,
+                key="depot_map",
+                width=1000,
+                height=500,
+                returned_objects=["all_drawings"],
+            )
+
+            if add_depot:
+                if depot_location.get("all_drawings") is not None:
+                    st.session_state["depot_location"] = depot_location["all_drawings"][
+                        0
+                    ]["geometry"]["coordinates"]
+
+    with col2:
+        if st.session_state["depot_location"] is not None:
+            depot_lon, depot_lat = st.session_state["depot_location"]
+
+            depot, random_stops_df_gpd = load.add_depot(
+                depot_lat, depot_lon, random_stops_df_gpd
+            )
+
+            with st.spinner(
+                "Loading distance matrix...",
+            ):
+                distance_matrix = load.get_distance_matrix(random_stops_df_gpd)
+
+            with st.expander("**Add a disaster area**"):
+                add_disaster_area = st.button(
+                    "Add disaster area",
+                    use_container_width=True,
+                    key="add_disaster_area",
+                    type="primary",
+                )
+
+                m = maps.add_disaster_area(random_stops_df_gpd)
+
+                disaster_area = st_folium(
+                    m,
+                    key="disaster_map",
+                    width=1000,
+                    height=500,
+                    returned_objects=["all_drawings"],
+                )
+
+                if add_disaster_area:
+                    if disaster_area.get("all_drawings") is not None:
+                        st.session_state["disaster_area"] = disaster_area[
+                            "all_drawings"
+                        ][0]["geometry"]["coordinates"]
+
+    if st.session_state["disaster_area"] is not None:
+        disaster_bounds = st.session_state["disaster_area"][0]
+
+        stops_in_disaster_area, disaster_area = load.add_disaster_area(
+            random_stops_df_gpd, [*disaster_bounds[0], *disaster_bounds[2]]
+        )
+
+        with st.expander("**Show unsolved network**"):
+            st.markdown(f"`Number of stops in sample: {len(random_stops_df_gpd)}`")
+            st.markdown(
+                f"`Number of stops in disaster area: {len(stops_in_disaster_area)}`"
+            )
+
+            folium_static(
+                maps.show_unsolved_network(
+                    random_stops_df_gpd,
+                    disaster_area,
+                    stops_in_disaster_area,
+                    distance_matrix,
+                ),
+                width=1000,
+                height=500,
+            )
+
+    if (
+        st.session_state["depot_location"] is not None
+        and st.session_state["disaster_area"] is not None
+    ):
+        with st.expander("**Solve model**"):
+            solve_model = st.button("Solve model", type="primary")
+
+            if solve_model:
+                with st.spinner("Solving model..."):
+                    model_ = model.solve_model(
+                        depot,
+                        random_stops_df_gpd,
+                        distance_matrix,
+                        NUM_BUSES,
+                        stops_in_disaster_area,
+                        BUS_CAPACITY,
+                        DEMAND_LIMIT,
+                        DISTANCE_THRESHOLD,
+                        SPLIT_TYPE,
+                        0.2,
+                        TIME_LIMIT,
+                        LOG_TO_CONSOLE,
+                    )
+
+                    st.write(model_)
