@@ -218,9 +218,16 @@ if IS_DATA_LOADED:
                         )
                     ].loc[:, "stop_name"]
 
+                    stop_names_split = [r.find("_") for r in route]
+
                     if len(stop_names) > 1:
+                        final_stop_names = [
+                            s + " (SPLIT)" if v > -1 else s
+                            for s, v in dict(zip(stop_names, stop_names_split)).items()
+                        ]
+
                         st.markdown(
-                            f"`Route {path}: {' >> '.join(stop_names)} >> Depot`"
+                            f"`Route {path}: {' >> '.join(final_stop_names)} >> Depot`"
                         )
                     else:
                         st.write(route)

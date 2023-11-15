@@ -177,20 +177,34 @@ def plot_routes(
         folium.CircleMarker(
             location=[stop.geometry.coords[0][1], stop.geometry.coords[0][0]],
             radius=5,
-            color=colormap_route[stop.bus] if stop.stop_id != "0" else "black",
+            color=(
+                colormap_route[stop.bus]
+                if not stop.is_split and stop.stop_id != "0"
+                else "purple"
+                if stop.stop_id != "0"
+                else "black"
+            ),
             fill=True,
             fill_opacity=1,
-            fill_color=colormap_route[stop.bus] if stop.stop_id != "0" else "black",
+            fill_color=(
+                colormap_route[stop.bus]
+                if not stop.is_split and stop.stop_id != "0"
+                else "purple"
+                if stop.stop_id != "0"
+                else "black"
+            ),
             tooltip=f"""
             <b>{stop.stop_name} ({stop.stop_id})</b>
             <br>
             Route: {bus_path_df[bus_path_df["stop_id"] == stop.stop_id]['bus'].values[0]}
             <br>
-            Step: {bus_path_df[bus_path_df["stop_id"] == stop.stop_id]['step'].values[0] + 1}z
+            Step: {bus_path_df[bus_path_df["stop_id"] == stop.stop_id]['step'].values[0] + 1}
             <br>
             Demand: {bus_path_df[bus_path_df["stop_id"] == stop.stop_id]['demand'].values[0]}
             <br>
             Load: {bus_path_df[bus_path_df["stop_id"] == stop.stop_id]['step_demand'].values[0]}
+            <br>
+            Has split demand: {stop.is_split}
             """,  # noqa: E501
             popup=f"""
             <div>
