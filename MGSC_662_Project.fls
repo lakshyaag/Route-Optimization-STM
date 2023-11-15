@@ -127,6 +127,10 @@ INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base
 INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/inputenc.sty
 INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/bm.sty
 INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/bm.sty
+INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/appendix/appendix.sty
+INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/appendix/appendix.sty
+INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
+INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
 INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT ./MGSC_662_Project.aux
@@ -200,6 +204,12 @@ INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/publ
 INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmbx5.tfm
 INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmmib5.tfm
 INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm
+INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmtt12.tfm
+INPUT ./unsolved-network.png
+INPUT ./unsolved-network.png
+INPUT ./unsolved-network.png
+INPUT ./unsolved-network.png
+INPUT ./unsolved-network.png
 INPUT MGSC_662_Project.aux
 INPUT ./MGSC_662_Project.out
 INPUT ./MGSC_662_Project.out
@@ -211,5 +221,7 @@ INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/pu
 INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb
+INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb
 INPUT c:/Users/Lakshya Agarwal/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb

@@ -4,10 +4,7 @@
 \usepackage{titling} % For customizing the title section
 \usepackage{color}
 \usepackage[margin=1in]{geometry} % For page margins
-\usepackage{graphicx} % For including graphics
-\usepackage{hyperref} % For hyperlinks in the table of contents
-\usepackage{graphicx} % For including graphics
-\usepackage{hyperref} % For hyperlinks in the table of contents
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{amsmath} % For mathematical formulas
 \usepackage{listings} % For code listings
 \usepackage{xcolor} % For coloring code
@@ -16,6 +13,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage[margin=1in]{geometry}
 \usepackage{bm}
+\usepackage[title]{appendix}
+\usepackage{booktabs}
 
 
 % Your title here
@@ -77,9 +76,6 @@ The project focuses on several critical areas:
     \item \textbf{Feasibility of Routes:} Ensures evacuation paths are viable, taking into account Montreal’s diverse urban terrain and avoiding areas directly affected by the disaster.
     \item \textbf{Comprehensive Coverage:} Aims to cover all strategic evacuation points across the city, ensuring no critical area is neglected in the evacuation plan.
 \end{itemize}
-
-\subsection{Practical Constraints}
-
 The model is designed considering various operational constraints, including:
 \begin{itemize}
     \item Minimizing Distance: Focuses on reducing the total distance traveled by evacuation buses, which is crucial for a quick and efficient evacuation.
@@ -111,18 +107,21 @@ Additionally, road distances between all nodes were obtained via the OSMnx packa
 This integration of OSMnx data ensures that the model's distance calculations are approximately true to the real-world distances.
 The collected data was cleaned and preprocessed to ensure compatibility with the modeling environment and to establish a reliable baseline for the optimization process.
 
-\subsection{Mathematical formulation of CVRP}
+\subsection{Mathematical formulation of CVRP} \label{sec:cvrp}
 
 The CVRP model is formulated as follows:
-\subsubsection{Parameters}
+\subsubsection{Parameters}\label{sec:parameters}
 Formally, the parameters to the model are defined as:
 \begin{itemize}
-    \item The set of stops is defined as $V = \{0, 1, 2, ..., n\}$, where $n$ is the number of stops. The depot is defined as the node ${0}$.
+    \item The set of all stops is defined as $S = \{0, 1, 2, ..., n\}$, where $n$ is the number of stops. The depot is defined as the node ${0}$.
+    \item The set of disaster-stops is defined as $O = \{1, 2, ..., m\}$, where $m$ is the number of stops.
+    \item The set of serviceable stops is then defined as $V = S - O$, i.e, the set of all stops excluding the disaster-stops.
     \item The distance between two nodes $i$ and $j$ is denoted as $D_{ij}$ and is assumed to be symmetric, i.e., $D_{ij} = D_{ji}$.
     \item The demand at node $i, \forall i \in V - \{0\}$ is denoted as $q_i \sim U(L, H)$,
           where $L$ and $H$ are the lower and upper bounds of the uniform distribution, respectively.
     \item The capacity of each bus is denoted as $Q$
     \item The number of buses is denoted as $K$
+    \item The distance threshold between any two non-depot nodes is denoted as $D_{max}$
 
 \end{itemize}
 
@@ -148,7 +147,7 @@ With the given parameters and decision variables, the model is given by:
      &                    & \quad & x_{iik} = 0,                                                & \quad \forall i \in V, \forall k \in K                     \\
      &                    & \quad & u_j - u_i \geq q_j - Q \cdot (1 - x_{ijk}),                 & \quad \forall i,j \in V - \{0\}, i \neq j, \forall k \in K \\
      &                    & \quad & q_i \leq u_i \leq Q,                                        & \quad \forall i \in V - \{0\}                              \\
-     &                    & \quad & D_{ij} \cdot x_{ijk} \leq 5,                                & \quad \forall i,j \in V - \{0\}, \forall k \in K           \\
+     &                    & \quad & D_{ij} \cdot x_{ijk} \leq D_{max},                          & \quad \forall i,j \in V - \{0\}, \forall k \in K           \\
      &                    & \quad & x_{ijk} \in \{0,1\},                                        & \quad \forall i,j \in V, \forall k \in K                   \\
      &                    & \quad & u_i \in \mathbb{Z},                                         & \quad \forall i \in V
 \end{alignat}
@@ -163,9 +162,115 @@ and (3.6) ensures that a bus does not travel from a node to itself.
 Constraints (3.7) and (3.8) are the Miller-Tucker-Zemlin (MTZ) constraints to eliminate subtours,
 i.e., cycling routes that do not pass through the depot.
 
-Constraints (3.9) impose a distance restriction of 5 km on travel between any two non-depot nodes.
+Constraints (3.9) impose a distance restriction of $D_{max}$ on travel between any two non-depot nodes.
 This is to ensure that the model does not generate routes that are infeasible in the real world.
 
 Constraints (3.10) and (3.11) define the decision variables as binary and integer, respectively.
+
+\subsection{Split Delivery VRP}
+In the above formulation, the demand at each node is assumed to be less than or equal to the capacity of a single bus.
+If the demand at node $i$ exceeds the bus capacity $Q$, then the CVRP model (defined in ~\autoref{sec:cvrp}) will not be able to produce a feasible solution.
+
+To address this, we introduce a series of algorithms to convert the CVRP into a Split Delivery VRP (SD-VRP).
+
+The idea is to split the each node with $q_i > Q$ into multiple nodes of smaller demands. The choice of the algorithm to split a node impacts the scale of the problem, and hence the computational time required to solve it.
+
+\subsubsection{Geometric split}
+This method splits a node's demand $q_i$ according to the following geometric progression:
+\begin{equation}
+    q_{ix} = \frac{2^{x-1}}{\sum_{i=1}^{S} 2^{x-1}} q_{i} \quad \forall x \in \{1, 2, ..., S\}
+\end{equation}
+$q_{ix}$ is rounded down to the nearest integer. If $\sum_{i=1}^{S} q_{ix} < q_{i}$, then $q_{iS} = q_{iS} + (q_{i} - \sum_{i=1}^{S} q_{ix})$.
+
+\subsubsection{Capacity-based split}
+This method splits a node's demand $q_i$ into $S$ nodes of equal demand:
+\begin{equation}
+    q_{ix} = Q  \quad \forall x \in \{1, \dots, S = \frac{q_{i}}{Q}\} \\
+\end{equation}
+$q_{ix}$ is rounded down to the nearest integer. If $\sum_{i=1}^{S} q_{ix} < q_{i}$, then $q_{i(S+1)} = q_{i} - \sum_{i=1}^{S} q_{ix}$.
+
+\subsubsection{Random split}
+This method splits a node's demand $q_i$ into $S$ nodes of random demand:
+\begin{equation}
+    q_{ix} \sim U(1, Q) \quad \forall x \in \{1, \dots, S = \frac{q_{i}}{Q}\}, \quad q_{ix} \in \mathbb{Z}^+\\
+\end{equation}
+
+\subsubsection{Equal split}
+This method splits a node's demand $q_i$ into $S$ nodes of equal demand of 1:
+\begin{equation}
+    q_{ix} = 1 \quad \forall x \in \{1, \dots, S = q_{i}\} \\
+\end{equation}
+
+\subsubsection{Comparison of split methods}
+Given a node with demand $q_n = 97$ and a bus capacity of $Q = 75$, ~\autoref{tab:split-methods} compares the different split methods.
+
+We report the number of nodes generated by each method, and the demand at each node.
+
+From \autoref{tab:split-methods}, we see that the equal split method provides the highest flexibility for the model by splitting each node into its smallest possible demand. However, this comes at the cost of a large number of nodes, which increases the computational time required to solve the model.
+
+The geometric split method provides a good balance between the number of nodes and the demand at each node, and hence is the method we use in our model, however the model can be easily modified to use any of the other split methods.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Split Method} & \textbf{Number of Nodes} & \textbf{Node Demands}   \\
+        \hline
+        Geometric Split       & 6                        & $[1, 3, 6, 12, 24, 51]$ \\
+        \hline
+        Capacity-based Split  & 2                        & $[75, 22]$              \\
+        \hline
+        Random Split          & 3                        & $[12, 74, 11]$          \\
+        \hline
+        Equal Split           & 97                       & $[1, 1, ..., 1]$        \\
+        \hline
+    \end{tabular}
+    \caption{Comparison of Split Methods}
+    \label{tab:split-methods}
+\end{table}
+
+\newpage
+\section{Numerical implementation \& results}
+This section presents the numerical implementation of the SD-VRP model, and the results obtained from the models.
+The models were implemented in Python using the Gurobi solver.
+
+\subsection{Model parameters}
+The parameters used in the model are given in ~\nameref{sec:parameters}. For this particular example, we assume that:
+\begin{itemize}
+    \item The number of buses, $K = 15$
+    \item The bus capacity, $Q = 80$
+    \item The number of stops, $n = 20$
+    \item The number of disaster stops, $m = 6$
+    \item The lower bound of the demand distribution, $L = 1$
+    \item The upper bound of the demand distribution, $H = 120$
+    \item The distance threshold between any two non-depot nodes, $D_{max} = 5$
+    \item The split type is \texttt{Geometric}
+\end{itemize}
+
+Then, the demand at each node is generated as $q_i \sim U(L, H)$, where $L$ and $H$ are the lower and upper bounds of the uniform distribution, respectively.
+
+Further, we assume the following parameters for the Gurobi solver, namely:
+\begin{itemize}
+    \item \texttt{TimeLimit} = 60 * 5 seconds
+    \item \texttt{MIPGap} = 0.2
+    \item \texttt{MIPFocus} = 1
+\end{itemize}
+
+Adding a depot at McGill University and choosing a disaster-affected area, the unsolved network is shown in ~\autoref{fig:unsolved-network}.
+
+
+
+\newpage
+\begin{appendices}
+    \section{Figures}\label{app:figures}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.8\textwidth]{unsolved-network.png}
+        \caption{Unsolved Network}
+        \label{fig:unsolved-network}
+    \end{figure}
+\end{appendices}
+
+
 
 \end{document}
