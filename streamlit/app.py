@@ -75,7 +75,7 @@ if IS_DATA_LOADED:
 
     stops_df_gpd = load.get_stops_on_route(route_list, segments_df, stops_df)
 
-    random_stops_df_gpd = load.get_random_stops(stops_df_gpd, 20)
+    random_stops_df_gpd = load.get_random_stops(stops_df_gpd, 25)
 
     col1, col2 = st.columns(2)
 

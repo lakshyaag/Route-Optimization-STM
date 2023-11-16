@@ -1,0 +1,110 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{BOEING2017126}{article}{}
+      \name{author}{1}{}{%
+        {{hash=6a97e7860ba89ae913db592b29249440}{%
+           family={Boeing},
+           familyi={B\bibinitperiod},
+           given={Geoff},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{6a97e7860ba89ae913db592b29249440}
+      \strng{fullhash}{6a97e7860ba89ae913db592b29249440}
+      \strng{bibnamehash}{6a97e7860ba89ae913db592b29249440}
+      \strng{authorbibnamehash}{6a97e7860ba89ae913db592b29249440}
+      \strng{authornamehash}{6a97e7860ba89ae913db592b29249440}
+      \strng{authorfullhash}{6a97e7860ba89ae913db592b29249440}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Urban scholars have studied street networks in various ways, but there are data availability and consistency limitations to the current urban planning/street network analysis literature. To address these challenges, this article presents OSMnx, a new tool to make the collection of data and creation and analysis of street networks simple, consistent, automatable and sound from the perspectives of graph theory, transportation, and urban design. OSMnx contributes five significant capabilities for researchers and practitioners: first, the automated downloading of political boundaries and building footprints; second, the tailored and automated downloading and constructing of street network data from OpenStreetMap; third, the algorithmic correction of network topology; fourth, the ability to save street networks to disk as shapefiles, GraphML, or SVG files; and fifth, the ability to analyze street networks, including calculating routes, projecting and visualizing networks, and calculating metric and topological measures. These measures include those common in urban design and transportation studies, as well as advanced measures of the structure and topology of the network. Finally, this article presents a simple case study using OSMnx to construct and analyze street networks in Portland, Oregon.}
+      \field{issn}{0198-9715}
+      \field{journaltitle}{Computers, Environment and Urban Systems}
+      \field{title}{OSMnx: New methods for acquiring, constructing, analyzing, and visualizing complex street networks}
+      \field{volume}{65}
+      \field{year}{2017}
+      \field{pages}{126\bibrangedash 139}
+      \range{pages}{14}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.compenvurbsys.2017.05.004
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0198971516303970
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0198971516303970
+      \endverb
+      \keyw{Street network,Urban form,Urban design,Transportation,Resilience,OpenStreetMap,GIS,Complex networks,Visualization,Python}
+    \endentry
+    \entry{DROR1994239}{article}{}
+      \name{author}{3}{}{%
+        {{hash=c6662eeacd61876052ef92d5be31600e}{%
+           family={Dror},
+           familyi={D\bibinitperiod},
+           given={Moshe},
+           giveni={M\bibinitperiod}}}%
+        {{hash=1d6e9fe0f2d8b8a132ebe0ace7645d51}{%
+           family={Laporte},
+           familyi={L\bibinitperiod},
+           given={Gilbert},
+           giveni={G\bibinitperiod}}}%
+        {{hash=a51a029c18fc752e999797174e2b498b}{%
+           family={Trudeau},
+           familyi={T\bibinitperiod},
+           given={Pierre},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{4e7f4162ca35882f1f0803f181f7f8d6}
+      \strng{fullhash}{4e7f4162ca35882f1f0803f181f7f8d6}
+      \strng{bibnamehash}{4e7f4162ca35882f1f0803f181f7f8d6}
+      \strng{authorbibnamehash}{4e7f4162ca35882f1f0803f181f7f8d6}
+      \strng{authornamehash}{4e7f4162ca35882f1f0803f181f7f8d6}
+      \strng{authorfullhash}{4e7f4162ca35882f1f0803f181f7f8d6}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper considers a relaxation of the classical vehicle routing problem (VRP), in which split deliveries are allowed. As the classical VRP, this problem is NP-hard, but nonetheless it seems more difficult to solve exactly. It is first formulated as an integer linear program. Several new classes of valid constraints are derived, and a hierarchy between these is established. A constraint relaxation branch and bound algorithm for the problem is then described. Computational results indicate that by using an appropriate combination of constraints, the gap between the lower and upper bounds at the root of the search tree can be reduced considerably. These results also confirm the quality of a previously published heuristic for this problem.}
+      \field{issn}{0166-218X}
+      \field{journaltitle}{Discrete Applied Mathematics}
+      \field{number}{3}
+      \field{title}{Vehicle routing with split deliveries}
+      \field{volume}{50}
+      \field{year}{1994}
+      \field{pages}{239\bibrangedash 254}
+      \range{pages}{16}
+      \verb{doi}
+      \verb https://doi.org/10.1016/0166-218X(92)00172-I
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/0166218X9200172I
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/0166218X9200172I
+      \endverb
+      \keyw{Split delivery vehicle routing problem,Subtour elimination constraints,Connectivity constraints,-split cycles,Fractional cycle elimination constraints}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

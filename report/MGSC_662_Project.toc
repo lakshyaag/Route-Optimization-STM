@@ -1,0 +1,21 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {section}{\numberline {2}Problem Description}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Context}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Key Aspects}{2}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Methodology}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Data Collection and Preparation}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Mathematical formulation of CVRP}{4}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Parameters}{4}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Decision Variables}{4}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Formulation}{5}{subsubsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.3}Split Delivery VRP}{5}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Geometric split}{6}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Capacity-based split}{6}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Random split}{6}{subsubsection.3.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.4}Equal split}{6}{subsubsection.3.3.4}%
+\contentsline {subsubsection}{\numberline {3.3.5}Comparison of split methods}{6}{subsubsection.3.3.5}%
+\contentsline {section}{\numberline {4}Numerical implementation \& results}{7}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Model parameters}{7}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Results}{8}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Discussion}{8}{subsection.4.3}%
+\contentsline {section}{\numberline {A}Figures}{9}{appendix.1.A}%

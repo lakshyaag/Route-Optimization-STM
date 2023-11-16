@@ -1,0 +1,339 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx} % For including graphics
+\usepackage{titling} % For customizing the title section
+\usepackage{color}
+\usepackage[margin=1in]{geometry} % For page margins
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{amsmath} % For mathematical formulas
+\usepackage{listings} % For code listings
+\usepackage{xcolor} % For coloring code
+\usepackage{amsfonts} % For mathematical fonts
+\usepackage{amssymb} % For mathematical symbols
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{bm}
+\usepackage[title]{appendix}
+\usepackage{booktabs}
+
+
+% Your title here
+\title{Disaster Route Planning}
+\author{} % Empty author to remove it from title area
+\date{} % Empty date to remove it from title area
+
+% Begin Document
+\begin{document}
+
+% Title Page
+\begin{titlepage}
+    \centering
+    \vspace*{1 cm}
+    \textbf{\Large Disaster Route Planning in Montreal}\\[2 cm] % Title of your document
+    \includegraphics[scale=0.5]{mcgill_logo.png}\\[1 cm] % Replace with your college logo
+    \textbf{Group 3:}\\[0.5 cm]
+    Arnav G. -- 260658711\\
+    Lakshya A. -- 261149449\\
+    Michael M. -- 261060598\\
+    Nandani Y. -- 261137002\\
+    Om S. -- 261112933\\[1 cm]
+    \textbf{MGSC 662 Decision Analytics}\\[0.5 cm]
+    Professor Javad Nasiry\\[1 cm]
+    \textbf{Desautels Faculty of Management}\\
+    \textbf{McGill University}\\[2 cm]
+    \textcolor{red}{\hrulefill}\\[0.5 cm]
+\end{titlepage}
+
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+
+% Introduction
+\section{Introduction}
+Disasters, both natural and man-made, pose a significant challenge in urban areas, necessitating effective planning and rapid response strategies. This project introduces an advanced optimization system focused on enhancing disaster response through intelligent route planning for bus-based evacuations. In the face of emergencies, traditional transit systems often become disrupted, emphasizing the need for efficient, adaptable evacuation operations.
+
+The significance of disaster planning cannot be understated, especially in densely populated urban environments. Effective disaster response requires not only immediate action but also strategic foresight and planning. In many cities, the existing infrastructure, while robust under normal circumstances, may not be equipped to handle the sudden and intense demands of a disaster scenario. This creates a critical need for systems that are capable of anticipating and adapting to the evolving nature of emergencies.
+
+In this study, the dynamic and unpredictable challenges of disaster response are addressed with a focus on optimizing transportation logistics. Developing a system that can adapt in real-time to the changing requirements of a disaster situation is crucial. Montreal, with its dense population and intricate transit network, exemplifies an urban landscape where efficient disaster response is vital. The proposed system in this project aims to utilize the city's existing transit infrastructure effectively while introducing flexible measures to ensure rapid and safe evacuation during times of crisis.
+
+Emergency preparedness, particularly in urban settings, involves a multifaceted approach. It requires integrating technological solutions with strategic planning, ensuring that responses are not only swift but also comprehensive and considerate of various potential scenarios. By optimizing evacuation routes and leveraging existing transit networks, urban areas can enhance their resilience and preparedness for various disaster situations.
+
+This project's exploration into route optimization for disaster evacuations in Montreal offers insights into the broader field of urban disaster response. It presents a model that can be instrumental in improving evacuation strategies, ultimately contributing to the safety and well-being of urban populations in times of crisis.
+
+\section{Problem Description}
+
+\subsection{Context}
+
+In Montreal, the optimization of evacuation routes takes on added complexity due to the potential for diverse disaster scenarios. The city's layout presents a unique set of challenges, where traditional transit solutions may fall short during emergencies. This project aims to address these complexities by developing a routing model that is not only efficient in normal conditions but also highly adaptable in emergency situations. The goal is to ensure that evacuation planning is robust, responsive, and capable of handling the sudden shifts in transit dynamics that disasters often bring.
+
+\subsection{Key Aspects}
+
+The project focuses on several critical areas:
+\begin{itemize}
+    \item \textbf{Dynamic Route Adjustments:} The model adapts routes in real-time, rerouting to avoid areas impacted by the disaster.
+    \item \textbf{Feasibility of Routes:} Ensures evacuation paths are viable, taking into account Montreal’s diverse urban terrain and avoiding areas directly affected by the disaster.
+    \item \textbf{Comprehensive Coverage:} Aims to cover all strategic evacuation points across the city, ensuring no critical area is neglected in the evacuation plan.
+\end{itemize}
+The model is designed considering various operational constraints, including:
+\begin{itemize}
+    \item Minimizing Distance: Focuses on reducing the total distance traveled by evacuation buses, which is crucial for a quick and efficient evacuation.
+    \item Vehicle Capacity: Maintains the safety and comfort of evacuees by adhering to the capacity limits of each bus.
+    \item Efficient Utilization of Transit Network: Maximizes the use of available transit infrastructure to facilitate a smooth evacuation process.
+\end{itemize}
+
+\section{Methodology}
+To address the challenges of disaster response in urban areas, this project proposes a model that optimizes evacuation routes for a fleet of buses.
+In the academic literature, this is known as the \textit{Vehicle Routing Problem} (VRP), which is a generalization of the \textit{Traveling Salesman Problem} (TSP).
+The VRP is a combinatorial optimization problem that seeks to identify the optimal set of routes for a fleet of vehicles tasked with servicing a set of demand nodes.
+
+
+In this section, we outline the construction of the CVRP model aimed at optimizing disaster evacution routes.
+The model seeks to identify the shortest possible routes for a fleet of buses tasked with evacuating residents to designated shelters, taking into account the constraints imposed by potential disaster scenarios that affect the city's transit network.
+
+After the CVRP is formulated, we introduce a series of algorithms to convert the problem into a Split Delivery Vehicle Routing Problem (SD-VRP).
+In a SD-VRP, a demand node may have capacity requirements that exceed the capacity of a single vehicle.
+This necessitates formulating a problem that allows for that demand node to be visited by more than one vehicle.
+
+
+\subsection{Data Collection and Preparation}
+
+A comprehensive data collection forms the foundation of the Vehicle Routing Problem (VRP) model.
+We utilized the General Transit Feed Specification (GTFS) from Société de transport de Montréal for detailed transit routes, schedules, and stop information.
+After the requisite data was collected, a random sample of 20 bus stops was taken. Then, a user-defined depot can be added to the sample of stops.
+
+Additionally, road distances between all nodes were obtained via the OSMnx package, providing information on the actual travel distances within the city's road network.
+This integration of OSMnx data ensures that the model's distance calculations are approximately true to the real-world distances.
+The collected data was cleaned and preprocessed to ensure compatibility with the modeling environment and to establish a reliable baseline for the optimization process.
+
+\subsection{Mathematical formulation of CVRP} \label{sec:cvrp}
+
+The CVRP model is formulated as follows:
+\subsubsection{Parameters}\label{sec:parameters}
+Formally, the parameters to the model are defined as:
+\begin{itemize}
+    \item The set of all stops is defined as $S = \{0, 1, 2, ..., n\}$, where $n$ is the number of stops. The depot is defined as the node ${0}$.
+    \item The set of disaster-stops is defined as $O = \{1, 2, ..., m\}$, where $m$ is the number of stops.
+    \item The set of serviceable stops is then defined as $V = S - O$, i.e, the set of all stops excluding the disaster-stops.
+    \item The distance between two nodes $i$ and $j$ is denoted as $D_{ij}$ and is assumed to be symmetric, i.e., $D_{ij} = D_{ji}$.
+    \item The demand at node $i, \forall i \in V - \{0\}$ is denoted as $q_i \sim U(L, H)$,
+          where $L$ and $H$ are the lower and upper bounds of the uniform distribution, respectively.
+    \item The capacity of each bus is denoted as $Q$
+    \item The number of buses is denoted as $K$
+    \item The distance threshold between any two non-depot nodes is denoted as $D_{max}$
+
+\end{itemize}
+
+\subsubsection{Decision Variables}
+The decision variables to the model are defined as:
+\begin{align*}
+    x_{ijk} & = \begin{cases}
+                    1 & \text{if the bus $k$ travels from node $i$ to node $j$} \\
+                    0 & \text{otherwise}
+                \end{cases} \\
+    u_i     & = \text{the amount of demand satisfied at node $i$}
+\end{align*}
+
+\subsubsection{Formulation}
+With the given parameters and decision variables, the model is given by:
+\numberwithin{equation}{section}
+\begin{alignat}{4}
+     & \text{minimize:}   &       & \sum_{i=0}^{n} \sum_{j=0}^{n} \sum_{k=0}^{K} D_{ij} x_{ijk}                                                              \\
+     & \text{subject to:} & \quad & \sum_{j=0}^{n} x_{ijk} = \sum_{j=0}^{n} x_{jik},            & \quad \forall i \in V, \forall k \in K                     \\
+     &                    & \quad & \sum_{i=1}^{n} \sum_{k=0}^K x_{ijk} = 1,                    & \quad \forall j \in V - \{0\}                              \\
+     &                    & \quad & \sum_{j=1}^{n} x_{0jk} \leq 1,                              & \quad \forall k \in K                                      \\
+     &                    & \quad & \sum_{j=1}^{n} \sum_{i=0}^{n} q_j \cdot x_{ijk} \leq Q,     & \quad \forall k \in K                                      \\
+     &                    & \quad & x_{iik} = 0,                                                & \quad \forall i \in V, \forall k \in K                     \\
+     &                    & \quad & u_j - u_i \geq q_j - Q \cdot (1 - x_{ijk}),                 & \quad \forall i,j \in V - \{0\}, i \neq j, \forall k \in K \\
+     &                    & \quad & q_i \leq u_i \leq Q,                                        & \quad \forall i \in V - \{0\}                              \\
+     &                    & \quad & D_{ij} \cdot x_{ijk} \leq D_{max},                          & \quad \forall i,j \in V - \{0\}, \forall k \in K           \\
+     &                    & \quad & x_{ijk} \in \{0,1\},                                        & \quad \forall i,j \in V, \forall k \in K                   \\
+     &                    & \quad & u_i \in \mathbb{Z},                                         & \quad \forall i \in V
+\end{alignat}
+
+The objective function (3.1) minimizes the total distance traveled by all buses. Constraints (3.2) ensures that each bus leaves a node that it enters,
+(3.3) ensures that each node is visited only once,
+(3.4) ensures that each bus leaves the depot at most once,
+(3.5) ensures that the capacity of each bus is not exceeded,
+and (3.6) ensures that a bus does not travel from a node to itself.
+
+
+Constraints (3.7) and (3.8) are the Miller-Tucker-Zemlin (MTZ) constraints to eliminate subtours,
+i.e., cycling routes that do not pass through the depot.
+
+Constraints (3.9) impose a distance restriction of $D_{max}$ on travel between any two non-depot nodes.
+This is to ensure that the model does not generate routes that are infeasible in the real world.
+
+Constraints (3.10) and (3.11) define the decision variables as binary and integer, respectively.
+
+\subsection{Split Delivery VRP}
+In the above formulation, the demand at each node is assumed to be less than or equal to the capacity of a single bus.
+If the demand at node $i$ exceeds the bus capacity $Q$, then the CVRP model (defined in ~\autoref{sec:cvrp}) will not be able to produce a feasible solution.
+
+To address this, we introduce a series of algorithms to convert the CVRP into a Split Delivery VRP (SD-VRP).
+
+The idea is to split the each node with $q_i > Q$ into multiple nodes of smaller demands. The choice of the algorithm to split a node impacts the scale of the problem, and hence the computational time required to solve it.
+
+\subsubsection{Geometric split}
+This method splits a node's demand $q_i$ according to the following geometric progression:
+\begin{equation}
+    q_{ix} = \frac{2^{x-1}}{\sum_{i=1}^{S} 2^{x-1}} q_{i} \quad \forall x \in \{1, 2, ..., S\}
+\end{equation}
+$q_{ix}$ is rounded down to the nearest integer. If $\sum_{i=1}^{S} q_{ix} < q_{i}$, then $q_{iS} = q_{iS} + (q_{i} - \sum_{i=1}^{S} q_{ix})$.
+
+\subsubsection{Capacity-based split}
+This method splits a node's demand $q_i$ into $S$ nodes of equal demand:
+\begin{equation}
+    q_{ix} = Q  \quad \forall x \in \{1, \dots, S = \frac{q_{i}}{Q}\} \\
+\end{equation}
+$q_{ix}$ is rounded down to the nearest integer. If $\sum_{i=1}^{S} q_{ix} < q_{i}$, then $q_{i(S+1)} = q_{i} - \sum_{i=1}^{S} q_{ix}$.
+
+\subsubsection{Random split}
+This method splits a node's demand $q_i$ into $S$ nodes of random demand:
+\begin{equation}
+    q_{ix} \sim U(1, Q) \quad \forall x \in \{1, \dots, S = \frac{q_{i}}{Q}\}, \quad q_{ix} \in \mathbb{Z}^+\\
+\end{equation}
+
+\subsubsection{Equal split}
+This method splits a node's demand $q_i$ into $S$ nodes of equal demand of 1:
+\begin{equation}
+    q_{ix} = 1 \quad \forall x \in \{1, \dots, S = q_{i}\} \\
+\end{equation}
+
+\subsubsection{Comparison of split methods}
+Given a node with demand $q_n = 97$ and a bus capacity of $Q = 75$, ~\autoref{tab:split-methods} compares the different split methods.
+We report the number of nodes generated by each method, and the demand at each node.
+
+From \autoref{tab:split-methods}, we see that the equal split method provides the highest flexibility for the model by splitting each node into its smallest possible demand. However, this comes at the cost of a large number of nodes, which increases the computational time required to solve the model.
+
+The geometric split method provides a good balance between the number of nodes and the demand at each node, and hence is the method we use in our model, however the model can be easily modified to use any of the other split methods.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Split Method} & \textbf{Number of Nodes} & \textbf{Node Demands}   \\
+        \hline
+        Geometric Split       & 6                        & $[1, 3, 6, 12, 24, 51]$ \\
+        \hline
+        Capacity-based Split  & 2                        & $[75, 22]$              \\
+        \hline
+        Random Split          & 3                        & $[12, 74, 11]$          \\
+        \hline
+        Equal Split           & 97                       & $[1, 1, ..., 1]$        \\
+        \hline
+    \end{tabular}
+    \caption{Comparison of Split Methods}
+    \label{tab:split-methods}
+\end{table}
+
+\newpage
+\section{Numerical implementation \& results}
+This section presents the numerical implementation of the SD-VRP model, and the results obtained from the models.
+The models were implemented in Python using the Gurobi solver.
+
+\subsection{Model parameters}
+The parameters used in the model are given in ~\nameref{sec:parameters}. For this particular example, we assume that:
+\begin{itemize}
+    \item The number of buses, $K = 15$
+    \item The bus capacity, $Q = 80$
+    \item The number of stops (inclduing depot), $n = 26$
+    \item The number of disaster stops, $m = 4$
+    \item The lower bound of the demand distribution, $L = 1$
+    \item The upper bound of the demand distribution, $H = 130$
+    \item The distance threshold between any two non-depot nodes, $D_{max} = 5$
+\end{itemize}
+
+Then, the demand at each node is generated as $q_i \sim U(L, H)$, where $L$ and $H$ are the lower and upper bounds of the uniform distribution, respectively.
+
+Further, we assume the following parameters for the Gurobi solver, namely:
+\begin{itemize}
+    \item \texttt{TimeLimit} = 60 * 5 seconds
+    \item \texttt{MIPGap} = 0.2
+    \item \texttt{MIPFocus}\footnote{\href{https://www.gurobi.com/documentation/current/refman/mipfocus.html}{MIPFocus - Gurobi Documentation}} = 1
+\end{itemize}
+
+Adding a depot at McGill University and choosing a disaster-affected area, the unsolved network is shown in ~\autoref{fig:unsolved-network}.
+Based on the generated demand, 6 nodes exceeded the bus capacity $Q$.
+
+We then solve the model using three split methods\footnote{The equal split method takes a long time to compute, and therefore, has been omitted from this example}, namely:
+\begin{enumerate}
+    \item Geometric split
+    \item Capacity-based split
+    \item Random split
+\end{enumerate}
+
+\subsection{Results}
+The results obtained from the model for each type of split method are summarized below:
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Split Method}            & \textbf{Geometric Split}         & \textbf{Capacity-based Split}   & \textbf{Random Split}         \\
+        \hline
+        \textbf{Total number of nodes}   & 53                               & 28                              & 35                            \\
+        \hline
+        \textbf{Total distance (in kms)} & 229.71                           & 210.35                          & 210.92                        \\
+        \hline
+        \textbf{Number of buses used}    & 15                               & 15                              & 15                            \\
+        \hline
+        \textbf{Time taken (in seconds)} & 300                              & 2.74                            & 300                           \\
+        \hline
+        \textbf{MIPGap}                  & 84.50\%                          & 19.11\%                         & 37.50\%                       \\
+        \hline
+        \textbf{Route map}               & ~\autoref{fig:geometric-network} & ~\autoref{fig:capacity-network} & ~\autoref{fig:random-network} \\
+        \hline
+    \end{tabular}
+    \caption{Results for the SD-VRP model}
+    \label{tab:results}
+\end{table}
+
+The route map for each split method shows the routes taken by each bus.
+The color of the route indicates the bus number.
+Nodes in red indicate disaster-affected areas,
+and nodes in purple indicate nodes with demand greater than the bus capacity.
+
+\subsection{Discussion}
+From ~\autoref{tab:results}, we see that
+the capacity-based split method provides the best results in terms of the total number of nodes, total distance, and time taken to solve the model.
+
+Other simulations can be run by varying the parameters of the model to obtain a better understanding of the trade-offs between the different split methods.
+
+\newpage
+\begin{appendices}
+    \section{Figures}\label{app:figures}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.8\textwidth]{unsolved-network.png}
+        \caption{Unsolved Network}
+        \label{fig:unsolved-network}
+    \end{figure}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.8\textwidth]{geometric-network.png}
+        \caption{Geometric Split Network}
+        \label{fig:geometric-network}
+    \end{figure}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.8\textwidth]{capacity-network.png}
+        \caption{Capacity-based Split Network}
+        \label{fig:capacity-network}
+    \end{figure}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.8\textwidth]{random-network.png}
+        \caption{Random Split Network}
+        \label{fig:random-network}
+    \end{figure}
+
+\end{appendices}
+
+
+
+\end{document}

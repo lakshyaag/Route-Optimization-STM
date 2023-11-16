@@ -72,7 +72,7 @@ def get_stops_on_route(
     return stops_df_gpd
 
 
-def get_random_stops(stops_df_gpd, n=20, random_state=5):
+def get_random_stops(stops_df_gpd, n=20, random_state=42):
     return stops_df_gpd.sample(n=n, random_state=random_state)
 
 
