@@ -173,13 +173,15 @@ def plot_routes(
         },
     ).add_to(route_map)
 
+    mc = folium.plugins.MarkerCluster(name="Individual stops").add_to(route_map)
+
     for stop in bus_path_df.itertuples():
-        folium.CircleMarker(
+        c = folium.CircleMarker(
             location=[stop.geometry.coords[0][1], stop.geometry.coords[0][0]],
             radius=5,
             color=(
                 colormap_route[stop.bus]
-                if not stop.is_split and stop.stop_id != "0"
+                if not stop.is_split
                 else "purple"
                 if stop.stop_id != "0"
                 else "black"
@@ -188,7 +190,7 @@ def plot_routes(
             fill_opacity=1,
             fill_color=(
                 colormap_route[stop.bus]
-                if not stop.is_split and stop.stop_id != "0"
+                if not stop.is_split
                 else "purple"
                 if stop.stop_id != "0"
                 else "black"
@@ -204,15 +206,20 @@ def plot_routes(
             <br>
             Load: {bus_path_df[bus_path_df["stop_id"] == stop.stop_id]['step_demand'].values[0]}
             <br>
-            Has split demand: {stop.is_split}
-            """,  # noqa: E501
+            Has split demand?: {stop.is_split}
+            """,
             popup=f"""
             <div>
                 <h4>{stop.stop_name} ({stop.stop_id})</h4>
                 <h4>Distance from depot: {distance_matrix.loc["0", stop.stop_id]:.1f} km</h4>
             </div>
-            """,  # noqa: E501
-        ).add_to(route_map)
+            """,
+        )
+
+        if stop.stop_id == "0" or stop.is_split:
+            c.add_to(route_map)
+        else:
+            c.add_to(mc)
 
     for stop in stops_in_disaster_area.itertuples():
         folium.CircleMarker(
@@ -230,7 +237,7 @@ def plot_routes(
                 <h4>{stop.stop_name} ({stop.stop_id})</h4>
                 <h4>Distance from depot: {distance_matrix.loc["0", stop.stop_id]:.1f} km</h4>
             </div>
-            """,  # noqa: E501
+            """,
         ).add_to(route_map)
 
     for route in routes_gdf.itertuples():
@@ -239,7 +246,7 @@ def plot_routes(
             locations=[(p[1], p[0]) for p in route.geometry.coords],
             color=colormap_route[route.bus],
             weight=3,
-            opacity=0.6,
+            opacity=0.5,
             tooltip=f"Route {route.bus}",
             popup=f"""
             <div>
