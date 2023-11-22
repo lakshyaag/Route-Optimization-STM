@@ -1,0 +1,2750 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_8cf46969a08e57559b0d6998b0075d01 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/1.4.2/Control.FullScreen.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/1.4.2/Control.FullScreen.min.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ardhi/Leaflet.MousePosition/src/L.Control.MousePosition.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ardhi/Leaflet.MousePosition/src/L.Control.MousePosition.min.css"/>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_8cf46969a08e57559b0d6998b0075d01" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_8cf46969a08e57559b0d6998b0075d01 = L.map(
+                "map_8cf46969a08e57559b0d6998b0075d01",
+                {
+                    center: [45.5048542, -73.5691235],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 11,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_df0cd049691fe8cff85e72f65eccc7e6 = L.tileLayer(
+                "https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca target=\"_blank\" href=\"http://cartodb.com/attributions\"\u003eCartoDB\u003c/a\u003e, CartoDB \u003ca target=\"_blank\" href =\"http://cartodb.com/attributions\"\u003eattributions\u003c/a\u003e", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        function geo_json_5add0a3f979de96c481325cf9621e24e_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {"color": "#ff0000", "fillColor": "#ff0000", "fillOpacity": 0.3, "weight": 1};
+            }
+        }
+
+        function geo_json_5add0a3f979de96c481325cf9621e24e_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_5add0a3f979de96c481325cf9621e24e = L.geoJson(null, {
+                onEachFeature: geo_json_5add0a3f979de96c481325cf9621e24e_onEachFeature,
+            
+                style: geo_json_5add0a3f979de96c481325cf9621e24e_styler,
+        });
+
+        function geo_json_5add0a3f979de96c481325cf9621e24e_add (data) {
+            geo_json_5add0a3f979de96c481325cf9621e24e
+                .addData(data)
+                .addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        }
+            geo_json_5add0a3f979de96c481325cf9621e24e_add({"features": [{"geometry": {"coordinates": [[[-73.604622, 45.535972], [-73.604622, 45.572994], [-73.682213, 45.572994], [-73.682213, 45.535972], [-73.604622, 45.535972]]], "type": "Polygon"}, "id": "0", "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            var marker_cluster_ec61e8d0137814805129f85d6ade3499 = L.markerClusterGroup(
+                {}
+            );
+            map_8cf46969a08e57559b0d6998b0075d01.addLayer(marker_cluster_ec61e8d0137814805129f85d6ade3499);
+        
+    
+            var circle_marker_60eda23a879c0b95c00569c196256cb6 = L.circleMarker(
+                [45.463498, -73.629216],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_6950ebec15bbfb983e519074d5ccb911 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_20fdfb17fd32f3a9399d7a465e9bace8 = $(`<div id="html_20fdfb17fd32f3a9399d7a465e9bace8" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Sherbrooke / Cavendish (51029)</h4>                 <h4>Distance from depot: 8.1 km</h4>             </div>             </div>`)[0];
+                popup_6950ebec15bbfb983e519074d5ccb911.setContent(html_20fdfb17fd32f3a9399d7a465e9bace8);
+            
+        
+
+        circle_marker_60eda23a879c0b95c00569c196256cb6.bindPopup(popup_6950ebec15bbfb983e519074d5ccb911)
+        ;
+
+        
+    
+    
+            circle_marker_60eda23a879c0b95c00569c196256cb6.bindTooltip(
+                `<div>
+                     
+            <b>Sherbrooke / Cavendish (51029)</b>
+            <br>
+            Route: 0
+            <br>
+            Step: 1
+            <br>
+            Demand: 100
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: True
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_e1073dc3b0a380be69f68ef76999beb0 = L.circleMarker(
+                [45.503256, -73.575901],
+                {"bubblingMouseEvents": true, "color": "#8000ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8000ff", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_08dc0ecbfe8fb983ea48d2c62b2071fa = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1ce2af84eb900667f79462eca78c5b6f = $(`<div id="html_1ce2af84eb900667f79462eca78c5b6f" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Depot (0)</h4>                 <h4>Distance from depot: 0.0 km</h4>             </div>             </div>`)[0];
+                popup_08dc0ecbfe8fb983ea48d2c62b2071fa.setContent(html_1ce2af84eb900667f79462eca78c5b6f);
+            
+        
+
+        circle_marker_e1073dc3b0a380be69f68ef76999beb0.bindPopup(popup_08dc0ecbfe8fb983ea48d2c62b2071fa)
+        ;
+
+        
+    
+    
+            circle_marker_e1073dc3b0a380be69f68ef76999beb0.bindTooltip(
+                `<div>
+                     
+            <b>Depot (0)</b>
+            <br>
+            Route: 0
+            <br>
+            Step: 2
+            <br>
+            Demand: 0
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_814492772a284a6a0248ef3afaeb48c3 = L.circleMarker(
+                [45.590246, -73.559273],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_75b1239eccc8e8e0e754fb7986b659e1 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b371878d595ef4b710665f1db692d1a1 = $(`<div id="html_b371878d595ef4b710665f1db692d1a1" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Beaubien / François-Boivin (52795)</h4>                 <h4>Distance from depot: 10.9 km</h4>             </div>             </div>`)[0];
+                popup_75b1239eccc8e8e0e754fb7986b659e1.setContent(html_b371878d595ef4b710665f1db692d1a1);
+            
+        
+
+        circle_marker_814492772a284a6a0248ef3afaeb48c3.bindPopup(popup_75b1239eccc8e8e0e754fb7986b659e1)
+        ;
+
+        
+    
+    
+            circle_marker_814492772a284a6a0248ef3afaeb48c3.bindTooltip(
+                `<div>
+                     
+            <b>Beaubien / François-Boivin (52795)</b>
+            <br>
+            Route: 1
+            <br>
+            Step: 1
+            <br>
+            Demand: 100
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: True
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_81bccf5dab54c212c248864b285ad822 = L.circleMarker(
+                [45.503256, -73.575901],
+                {"bubblingMouseEvents": true, "color": "#6629fe", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#6629fe", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_8dcf5624a0b78456f64f5203679ba23f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c6dae1a28cc60a909eaa717fbdd0712f = $(`<div id="html_c6dae1a28cc60a909eaa717fbdd0712f" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Depot (0)</h4>                 <h4>Distance from depot: 0.0 km</h4>             </div>             </div>`)[0];
+                popup_8dcf5624a0b78456f64f5203679ba23f.setContent(html_c6dae1a28cc60a909eaa717fbdd0712f);
+            
+        
+
+        circle_marker_81bccf5dab54c212c248864b285ad822.bindPopup(popup_8dcf5624a0b78456f64f5203679ba23f)
+        ;
+
+        
+    
+    
+            circle_marker_81bccf5dab54c212c248864b285ad822.bindTooltip(
+                `<div>
+                     
+            <b>Depot (0)</b>
+            <br>
+            Route: 0
+            <br>
+            Step: 2
+            <br>
+            Demand: 0
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_515be342db39ae9592616aa464f9a5b5 = L.circleMarker(
+                [45.469159, -73.641912],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_2e90822bfcff4e5de579c66a802e957d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_bb46c4a592b287b908a1331e1d2aa3d9 = $(`<div id="html_bb46c4a592b287b908a1331e1d2aa3d9" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Fielding / Cavendish (50727)</h4>                 <h4>Distance from depot: 8.1 km</h4>             </div>             </div>`)[0];
+                popup_2e90822bfcff4e5de579c66a802e957d.setContent(html_bb46c4a592b287b908a1331e1d2aa3d9);
+            
+        
+
+        circle_marker_515be342db39ae9592616aa464f9a5b5.bindPopup(popup_2e90822bfcff4e5de579c66a802e957d)
+        ;
+
+        
+    
+    
+            circle_marker_515be342db39ae9592616aa464f9a5b5.bindTooltip(
+                `<div>
+                     
+            <b>Fielding / Cavendish (50727)</b>
+            <br>
+            Route: 2
+            <br>
+            Step: 1
+            <br>
+            Demand: 100
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: True
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_c94a4e8d8db3dccd693422aa2dc6f354 = L.circleMarker(
+                [45.503256, -73.575901],
+                {"bubblingMouseEvents": true, "color": "#4c50fc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4c50fc", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_e1d4ffb6077ea5dfa15830622f6c1399 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ecee1e8c32eebc30a1f110ae4e997677 = $(`<div id="html_ecee1e8c32eebc30a1f110ae4e997677" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Depot (0)</h4>                 <h4>Distance from depot: 0.0 km</h4>             </div>             </div>`)[0];
+                popup_e1d4ffb6077ea5dfa15830622f6c1399.setContent(html_ecee1e8c32eebc30a1f110ae4e997677);
+            
+        
+
+        circle_marker_c94a4e8d8db3dccd693422aa2dc6f354.bindPopup(popup_e1d4ffb6077ea5dfa15830622f6c1399)
+        ;
+
+        
+    
+    
+            circle_marker_c94a4e8d8db3dccd693422aa2dc6f354.bindTooltip(
+                `<div>
+                     
+            <b>Depot (0)</b>
+            <br>
+            Route: 0
+            <br>
+            Step: 2
+            <br>
+            Demand: 0
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_e091bbcd692afbb7aed2ba3769b3dcd4 = L.circleMarker(
+                [45.52606, -73.587891],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_1ec0087ffed63dc1ba0d0859dd87f728 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e615c315dac495fc211c47134f945a83 = $(`<div id="html_e615c315dac495fc211c47134f945a83" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Saint-Joseph / Saint-Denis (51921)</h4>                 <h4>Distance from depot: 3.6 km</h4>             </div>             </div>`)[0];
+                popup_1ec0087ffed63dc1ba0d0859dd87f728.setContent(html_e615c315dac495fc211c47134f945a83);
+            
+        
+
+        circle_marker_e091bbcd692afbb7aed2ba3769b3dcd4.bindPopup(popup_1ec0087ffed63dc1ba0d0859dd87f728)
+        ;
+
+        
+    
+    
+            circle_marker_e091bbcd692afbb7aed2ba3769b3dcd4.bindTooltip(
+                `<div>
+                     
+            <b>Saint-Joseph / Saint-Denis (51921)</b>
+            <br>
+            Route: 3
+            <br>
+            Step: 1
+            <br>
+            Demand: 100
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: True
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_97b63a6d766985063e36d3c712c1c99d = L.circleMarker(
+                [45.503256, -73.575901],
+                {"bubblingMouseEvents": true, "color": "#3079f7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3079f7", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_d3fdbb3afe565760d735d750c63845f8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8c7e9ef42ea9c99b5f432f2602e66a3a = $(`<div id="html_8c7e9ef42ea9c99b5f432f2602e66a3a" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Depot (0)</h4>                 <h4>Distance from depot: 0.0 km</h4>             </div>             </div>`)[0];
+                popup_d3fdbb3afe565760d735d750c63845f8.setContent(html_8c7e9ef42ea9c99b5f432f2602e66a3a);
+            
+        
+
+        circle_marker_97b63a6d766985063e36d3c712c1c99d.bindPopup(popup_d3fdbb3afe565760d735d750c63845f8)
+        ;
+
+        
+    
+    
+            circle_marker_97b63a6d766985063e36d3c712c1c99d.bindTooltip(
+                `<div>
+                     
+            <b>Depot (0)</b>
+            <br>
+            Route: 0
+            <br>
+            Step: 2
+            <br>
+            Demand: 0
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_1b3afef0f9716a6c506f3c0f79b45662 = L.circleMarker(
+                [45.514425, -73.609653],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_d24d2758ba5a6dbc8e9b35e1c591de3d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3d7d78873adf37962c2615775f982921 = $(`<div id="html_3d7d78873adf37962c2615775f982921" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Côte-Sainte-Catherine / Pagnuelo (56199)</h4>                 <h4>Distance from depot: 3.9 km</h4>             </div>             </div>`)[0];
+                popup_d24d2758ba5a6dbc8e9b35e1c591de3d.setContent(html_3d7d78873adf37962c2615775f982921);
+            
+        
+
+        circle_marker_1b3afef0f9716a6c506f3c0f79b45662.bindPopup(popup_d24d2758ba5a6dbc8e9b35e1c591de3d)
+        ;
+
+        
+    
+    
+            circle_marker_1b3afef0f9716a6c506f3c0f79b45662.bindTooltip(
+                `<div>
+                     
+            <b>Côte-Sainte-Catherine / Pagnuelo (56199)</b>
+            <br>
+            Route: 4
+            <br>
+            Step: 1
+            <br>
+            Demand: 100
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: True
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_f8036cba708bb5767c0651da18d7dd71 = L.circleMarker(
+                [45.503256, -73.575901],
+                {"bubblingMouseEvents": true, "color": "#169bf2", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#169bf2", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_02cb635ee728a399656e2db0d0ddebc5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_76c548789ca82507149801768faa9dcb = $(`<div id="html_76c548789ca82507149801768faa9dcb" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Depot (0)</h4>                 <h4>Distance from depot: 0.0 km</h4>             </div>             </div>`)[0];
+                popup_02cb635ee728a399656e2db0d0ddebc5.setContent(html_76c548789ca82507149801768faa9dcb);
+            
+        
+
+        circle_marker_f8036cba708bb5767c0651da18d7dd71.bindPopup(popup_02cb635ee728a399656e2db0d0ddebc5)
+        ;
+
+        
+    
+    
+            circle_marker_f8036cba708bb5767c0651da18d7dd71.bindTooltip(
+                `<div>
+                     
+            <b>Depot (0)</b>
+            <br>
+            Route: 0
+            <br>
+            Step: 2
+            <br>
+            Demand: 0
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_2a8fa79540f66a1a8dd12bcc753667fb = L.circleMarker(
+                [45.479704, -73.619643],
+                {"bubblingMouseEvents": true, "color": "#07bbea", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#07bbea", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_eb8b2ed8c4764c69d91c34e0b59a935a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_03d58ae4ec3b32b8de83117b012aaadc = $(`<div id="html_03d58ae4ec3b32b8de83117b012aaadc" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Station Villa-Maria (51241)</h4>                 <h4>Distance from depot: 6.4 km</h4>             </div>             </div>`)[0];
+                popup_eb8b2ed8c4764c69d91c34e0b59a935a.setContent(html_03d58ae4ec3b32b8de83117b012aaadc);
+            
+        
+
+        circle_marker_2a8fa79540f66a1a8dd12bcc753667fb.bindPopup(popup_eb8b2ed8c4764c69d91c34e0b59a935a)
+        ;
+
+        
+    
+    
+            circle_marker_2a8fa79540f66a1a8dd12bcc753667fb.bindTooltip(
+                `<div>
+                     
+            <b>Station Villa-Maria (51241)</b>
+            <br>
+            Route: 5
+            <br>
+            Step: 1
+            <br>
+            Demand: 40
+            <br>
+            Load: 40
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_06fc95cb0b73e243c1a898487ae863bf = L.circleMarker(
+                [45.484048, -73.628631],
+                {"bubblingMouseEvents": true, "color": "#07bbea", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#07bbea", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_ef59fb60cad433bdd5a9aeb4421b76b2 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2a8f12356fa8cb0e8016dd4dde80598c = $(`<div id="html_2a8f12356fa8cb0e8016dd4dde80598c" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Queen-Mary / Trans Island (51032)</h4>                 <h4>Distance from depot: 5.5 km</h4>             </div>             </div>`)[0];
+                popup_ef59fb60cad433bdd5a9aeb4421b76b2.setContent(html_2a8f12356fa8cb0e8016dd4dde80598c);
+            
+        
+
+        circle_marker_06fc95cb0b73e243c1a898487ae863bf.bindPopup(popup_ef59fb60cad433bdd5a9aeb4421b76b2)
+        ;
+
+        
+    
+    
+            circle_marker_06fc95cb0b73e243c1a898487ae863bf.bindTooltip(
+                `<div>
+                     
+            <b>Queen-Mary / Trans Island (51032)</b>
+            <br>
+            Route: 5
+            <br>
+            Step: 2
+            <br>
+            Demand: 57
+            <br>
+            Load: 97
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_d2ae2838c571fe4f6db3868636834474 = L.circleMarker(
+                [45.503256, -73.575901],
+                {"bubblingMouseEvents": true, "color": "#07bbea", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#07bbea", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_9e8fb65cc7bce02e083c377918c58662 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_76bef55d8e053e6b7155093e86ea7ae0 = $(`<div id="html_76bef55d8e053e6b7155093e86ea7ae0" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Depot (0)</h4>                 <h4>Distance from depot: 0.0 km</h4>             </div>             </div>`)[0];
+                popup_9e8fb65cc7bce02e083c377918c58662.setContent(html_76bef55d8e053e6b7155093e86ea7ae0);
+            
+        
+
+        circle_marker_d2ae2838c571fe4f6db3868636834474.bindPopup(popup_9e8fb65cc7bce02e083c377918c58662)
+        ;
+
+        
+    
+    
+            circle_marker_d2ae2838c571fe4f6db3868636834474.bindTooltip(
+                `<div>
+                     
+            <b>Depot (0)</b>
+            <br>
+            Route: 0
+            <br>
+            Step: 2
+            <br>
+            Demand: 0
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_06b7fac2768900201ce12962d97ed06e = L.circleMarker(
+                [45.547472, -73.592774],
+                {"bubblingMouseEvents": true, "color": "#20d5e1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#20d5e1", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_1e7aa559a064cae138c63fcfc02760d5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6030c19fdf0d6af99a6ea158243abf92 = $(`<div id="html_6030c19fdf0d6af99a6ea158243abf92" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Beaubien / des Écores (51781)</h4>                 <h4>Distance from depot: 6.5 km</h4>             </div>             </div>`)[0];
+                popup_1e7aa559a064cae138c63fcfc02760d5.setContent(html_6030c19fdf0d6af99a6ea158243abf92);
+            
+        
+
+        circle_marker_06b7fac2768900201ce12962d97ed06e.bindPopup(popup_1e7aa559a064cae138c63fcfc02760d5)
+        ;
+
+        
+    
+    
+            circle_marker_06b7fac2768900201ce12962d97ed06e.bindTooltip(
+                `<div>
+                     
+            <b>Beaubien / des Écores (51781)</b>
+            <br>
+            Route: 6
+            <br>
+            Step: 1
+            <br>
+            Demand: 39
+            <br>
+            Load: 39
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_1b0903b4af23623b46d577a2e2975ea6 = L.circleMarker(
+                [45.549551, -73.567988],
+                {"bubblingMouseEvents": true, "color": "#20d5e1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#20d5e1", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_29ffab7171f5ff9b31dba0b927b38ff9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_69baa181f4b9149e6909c709eb261aba = $(`<div id="html_69baa181f4b9149e6909c709eb261aba" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Saint-Michel / Saint-Joseph (52520)</h4>                 <h4>Distance from depot: 5.9 km</h4>             </div>             </div>`)[0];
+                popup_29ffab7171f5ff9b31dba0b927b38ff9.setContent(html_69baa181f4b9149e6909c709eb261aba);
+            
+        
+
+        circle_marker_1b0903b4af23623b46d577a2e2975ea6.bindPopup(popup_29ffab7171f5ff9b31dba0b927b38ff9)
+        ;
+
+        
+    
+    
+            circle_marker_1b0903b4af23623b46d577a2e2975ea6.bindTooltip(
+                `<div>
+                     
+            <b>Saint-Michel / Saint-Joseph (52520)</b>
+            <br>
+            Route: 6
+            <br>
+            Step: 2
+            <br>
+            Demand: 61
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_ddd4d9012c0c731a984895100a60ed28 = L.circleMarker(
+                [45.503256, -73.575901],
+                {"bubblingMouseEvents": true, "color": "#20d5e1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#20d5e1", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_20bbc1e59b481a73c545f5ae92454f2f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d4ed53c6660608a1a587cb99143b9336 = $(`<div id="html_d4ed53c6660608a1a587cb99143b9336" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Depot (0)</h4>                 <h4>Distance from depot: 0.0 km</h4>             </div>             </div>`)[0];
+                popup_20bbc1e59b481a73c545f5ae92454f2f.setContent(html_d4ed53c6660608a1a587cb99143b9336);
+            
+        
+
+        circle_marker_ddd4d9012c0c731a984895100a60ed28.bindPopup(popup_20bbc1e59b481a73c545f5ae92454f2f)
+        ;
+
+        
+    
+    
+            circle_marker_ddd4d9012c0c731a984895100a60ed28.bindTooltip(
+                `<div>
+                     
+            <b>Depot (0)</b>
+            <br>
+            Route: 0
+            <br>
+            Step: 2
+            <br>
+            Demand: 0
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_098ed5a91a88b23a05ce589b50cbf089 = L.circleMarker(
+                [45.524456, -73.564917],
+                {"bubblingMouseEvents": true, "color": "#56f7ca", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#56f7ca", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_f9b84642edd890ea75d892be10d26ace = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_53aebb77072330ff0bf22c995f1591f4 = $(`<div id="html_53aebb77072330ff0bf22c995f1591f4" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Sherbrooke / Panet (52647)</h4>                 <h4>Distance from depot: 2.5 km</h4>             </div>             </div>`)[0];
+                popup_f9b84642edd890ea75d892be10d26ace.setContent(html_53aebb77072330ff0bf22c995f1591f4);
+            
+        
+
+        circle_marker_098ed5a91a88b23a05ce589b50cbf089.bindPopup(popup_f9b84642edd890ea75d892be10d26ace)
+        ;
+
+        
+    
+    
+            circle_marker_098ed5a91a88b23a05ce589b50cbf089.bindTooltip(
+                `<div>
+                     
+            <b>Sherbrooke / Panet (52647)</b>
+            <br>
+            Route: 8
+            <br>
+            Step: 1
+            <br>
+            Demand: 7
+            <br>
+            Load: 7
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_bf73c5e7079990ecc3850aefcb319774 = L.circleMarker(
+                [45.539114, -73.58777],
+                {"bubblingMouseEvents": true, "color": "#56f7ca", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#56f7ca", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_0047dee5d43a6c3ff5dd1d08bc41184a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2e19434ab9dd244ea15cb9a99604f285 = $(`<div id="html_2e19434ab9dd244ea15cb9a99604f285" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Papineau / escalier des Carrières (51904)</h4>                 <h4>Distance from depot: 5.8 km</h4>             </div>             </div>`)[0];
+                popup_0047dee5d43a6c3ff5dd1d08bc41184a.setContent(html_2e19434ab9dd244ea15cb9a99604f285);
+            
+        
+
+        circle_marker_bf73c5e7079990ecc3850aefcb319774.bindPopup(popup_0047dee5d43a6c3ff5dd1d08bc41184a)
+        ;
+
+        
+    
+    
+            circle_marker_bf73c5e7079990ecc3850aefcb319774.bindTooltip(
+                `<div>
+                     
+            <b>Papineau / escalier des Carrières (51904)</b>
+            <br>
+            Route: 8
+            <br>
+            Step: 2
+            <br>
+            Demand: 91
+            <br>
+            Load: 98
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_dd61ac4ff61b145e7897e09a86d94200 = L.circleMarker(
+                [45.503256, -73.575901],
+                {"bubblingMouseEvents": true, "color": "#56f7ca", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#56f7ca", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_29657370d96f509722b6d47ed700a4df = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4ceb831155e20ed026e2fd47a48d904e = $(`<div id="html_4ceb831155e20ed026e2fd47a48d904e" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Depot (0)</h4>                 <h4>Distance from depot: 0.0 km</h4>             </div>             </div>`)[0];
+                popup_29657370d96f509722b6d47ed700a4df.setContent(html_4ceb831155e20ed026e2fd47a48d904e);
+            
+        
+
+        circle_marker_dd61ac4ff61b145e7897e09a86d94200.bindPopup(popup_29657370d96f509722b6d47ed700a4df)
+        ;
+
+        
+    
+    
+            circle_marker_dd61ac4ff61b145e7897e09a86d94200.bindTooltip(
+                `<div>
+                     
+            <b>Depot (0)</b>
+            <br>
+            Route: 0
+            <br>
+            Step: 2
+            <br>
+            Demand: 0
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_c9b2c85eb393f535aa4ab842ea7e2cdb = L.circleMarker(
+                [45.463498, -73.629216],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_8a382b3cebe147d808260e82f7142b80 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d4916d177adee5d103d83023f9a9c65b = $(`<div id="html_d4916d177adee5d103d83023f9a9c65b" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Sherbrooke / Cavendish (51029)</h4>                 <h4>Distance from depot: 8.1 km</h4>             </div>             </div>`)[0];
+                popup_8a382b3cebe147d808260e82f7142b80.setContent(html_d4916d177adee5d103d83023f9a9c65b);
+            
+        
+
+        circle_marker_c9b2c85eb393f535aa4ab842ea7e2cdb.bindPopup(popup_8a382b3cebe147d808260e82f7142b80)
+        ;
+
+        
+    
+    
+            circle_marker_c9b2c85eb393f535aa4ab842ea7e2cdb.bindTooltip(
+                `<div>
+                     
+            <b>Sherbrooke / Cavendish (51029)</b>
+            <br>
+            Route: 0
+            <br>
+            Step: 1
+            <br>
+            Demand: 100
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: True
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_1b426c6630f5eaf1fe2d5731633f7cd5 = L.circleMarker(
+                [45.476312, -73.613443],
+                {"bubblingMouseEvents": true, "color": "#72febb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#72febb", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_5b635f48d1053a199fc5496fd9c7b336 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2dd82ce53fd7e3a8d495166f678800ce = $(`<div id="html_2dd82ce53fd7e3a8d495166f678800ce" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Décarie / Côte-Saint-Antoine (51372)</h4>                 <h4>Distance from depot: 6.6 km</h4>             </div>             </div>`)[0];
+                popup_5b635f48d1053a199fc5496fd9c7b336.setContent(html_2dd82ce53fd7e3a8d495166f678800ce);
+            
+        
+
+        circle_marker_1b426c6630f5eaf1fe2d5731633f7cd5.bindPopup(popup_5b635f48d1053a199fc5496fd9c7b336)
+        ;
+
+        
+    
+    
+            circle_marker_1b426c6630f5eaf1fe2d5731633f7cd5.bindTooltip(
+                `<div>
+                     
+            <b>Décarie / Côte-Saint-Antoine (51372)</b>
+            <br>
+            Route: 9
+            <br>
+            Step: 2
+            <br>
+            Demand: 80
+            <br>
+            Load: 92
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_39904a52f1aaa33864509a945d27a870 = L.circleMarker(
+                [45.503256, -73.575901],
+                {"bubblingMouseEvents": true, "color": "#72febb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#72febb", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_624429ed362a46969e67158727aabb79 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9152708c0ca2ed4ce80819e41c2a733f = $(`<div id="html_9152708c0ca2ed4ce80819e41c2a733f" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Depot (0)</h4>                 <h4>Distance from depot: 0.0 km</h4>             </div>             </div>`)[0];
+                popup_624429ed362a46969e67158727aabb79.setContent(html_9152708c0ca2ed4ce80819e41c2a733f);
+            
+        
+
+        circle_marker_39904a52f1aaa33864509a945d27a870.bindPopup(popup_624429ed362a46969e67158727aabb79)
+        ;
+
+        
+    
+    
+            circle_marker_39904a52f1aaa33864509a945d27a870.bindTooltip(
+                `<div>
+                     
+            <b>Depot (0)</b>
+            <br>
+            Route: 0
+            <br>
+            Step: 2
+            <br>
+            Demand: 0
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_5079a8bc9decbe7d8b35a3a33d0bf17c = L.circleMarker(
+                [45.512705, -73.569769],
+                {"bubblingMouseEvents": true, "color": "#8cfead", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8cfead", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_382acb54ef6633da6a659fd116d37709 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_39fa8447800c56b5bcd7d45e00a6472c = $(`<div id="html_39fa8447800c56b5bcd7d45e00a6472c" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Saint-Laurent / Sherbrooke (52511)</h4>                 <h4>Distance from depot: 1.1 km</h4>             </div>             </div>`)[0];
+                popup_382acb54ef6633da6a659fd116d37709.setContent(html_39fa8447800c56b5bcd7d45e00a6472c);
+            
+        
+
+        circle_marker_5079a8bc9decbe7d8b35a3a33d0bf17c.bindPopup(popup_382acb54ef6633da6a659fd116d37709)
+        ;
+
+        
+    
+    
+            circle_marker_5079a8bc9decbe7d8b35a3a33d0bf17c.bindTooltip(
+                `<div>
+                     
+            <b>Saint-Laurent / Sherbrooke (52511)</b>
+            <br>
+            Route: 10
+            <br>
+            Step: 1
+            <br>
+            Demand: 37
+            <br>
+            Load: 37
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_087b2663cb835a13dd20a64dff8c0a35 = L.circleMarker(
+                [45.52606, -73.587891],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_f0eff3f6dca2ba44b19d2809670672fe = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7365e807588ea66c7b5a456aa56fee53 = $(`<div id="html_7365e807588ea66c7b5a456aa56fee53" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Saint-Joseph / Saint-Denis (51921)</h4>                 <h4>Distance from depot: 3.6 km</h4>             </div>             </div>`)[0];
+                popup_f0eff3f6dca2ba44b19d2809670672fe.setContent(html_7365e807588ea66c7b5a456aa56fee53);
+            
+        
+
+        circle_marker_087b2663cb835a13dd20a64dff8c0a35.bindPopup(popup_f0eff3f6dca2ba44b19d2809670672fe)
+        ;
+
+        
+    
+    
+            circle_marker_087b2663cb835a13dd20a64dff8c0a35.bindTooltip(
+                `<div>
+                     
+            <b>Saint-Joseph / Saint-Denis (51921)</b>
+            <br>
+            Route: 3
+            <br>
+            Step: 1
+            <br>
+            Demand: 100
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: True
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_2da2f62d35b0ac5cb2fe3bd7bbea19d5 = L.circleMarker(
+                [45.511244, -73.566593],
+                {"bubblingMouseEvents": true, "color": "#8cfead", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8cfead", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_e6276f193ceb2ed92f72041753e0bd52 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4a4655d5882f2cda75c788c0cb70576e = $(`<div id="html_4a4655d5882f2cda75c788c0cb70576e" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Saint-Laurent / Ontario (52610)</h4>                 <h4>Distance from depot: 1.4 km</h4>             </div>             </div>`)[0];
+                popup_e6276f193ceb2ed92f72041753e0bd52.setContent(html_4a4655d5882f2cda75c788c0cb70576e);
+            
+        
+
+        circle_marker_2da2f62d35b0ac5cb2fe3bd7bbea19d5.bindPopup(popup_e6276f193ceb2ed92f72041753e0bd52)
+        ;
+
+        
+    
+    
+            circle_marker_2da2f62d35b0ac5cb2fe3bd7bbea19d5.bindTooltip(
+                `<div>
+                     
+            <b>Saint-Laurent / Ontario (52610)</b>
+            <br>
+            Route: 10
+            <br>
+            Step: 3
+            <br>
+            Demand: 1
+            <br>
+            Load: 77
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_60f9f7c588b9704a9b58dc445a867a0f = L.circleMarker(
+                [45.509852, -73.563637],
+                {"bubblingMouseEvents": true, "color": "#8cfead", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8cfead", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_fb487417d80e92e33117f1dbff9be4a9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b957777cfbff4fe4d47756df7eacfd6e = $(`<div id="html_b957777cfbff4fe4d47756df7eacfd6e" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Saint-Laurent / Sainte-Catherine (52710)</h4>                 <h4>Distance from depot: 1.6 km</h4>             </div>             </div>`)[0];
+                popup_fb487417d80e92e33117f1dbff9be4a9.setContent(html_b957777cfbff4fe4d47756df7eacfd6e);
+            
+        
+
+        circle_marker_60f9f7c588b9704a9b58dc445a867a0f.bindPopup(popup_fb487417d80e92e33117f1dbff9be4a9)
+        ;
+
+        
+    
+    
+            circle_marker_60f9f7c588b9704a9b58dc445a867a0f.bindTooltip(
+                `<div>
+                     
+            <b>Saint-Laurent / Sainte-Catherine (52710)</b>
+            <br>
+            Route: 10
+            <br>
+            Step: 4
+            <br>
+            Demand: 7
+            <br>
+            Load: 84
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_dc246f54c0511ec6b29331e80d3a7e0f = L.circleMarker(
+                [45.503256, -73.575901],
+                {"bubblingMouseEvents": true, "color": "#8cfead", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8cfead", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_2693498d448dd719fb55d3ab7c276e82 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0b54f8a34306da7d73ce3682d98a4cd5 = $(`<div id="html_0b54f8a34306da7d73ce3682d98a4cd5" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Depot (0)</h4>                 <h4>Distance from depot: 0.0 km</h4>             </div>             </div>`)[0];
+                popup_2693498d448dd719fb55d3ab7c276e82.setContent(html_0b54f8a34306da7d73ce3682d98a4cd5);
+            
+        
+
+        circle_marker_dc246f54c0511ec6b29331e80d3a7e0f.bindPopup(popup_2693498d448dd719fb55d3ab7c276e82)
+        ;
+
+        
+    
+    
+            circle_marker_dc246f54c0511ec6b29331e80d3a7e0f.bindTooltip(
+                `<div>
+                     
+            <b>Depot (0)</b>
+            <br>
+            Route: 0
+            <br>
+            Step: 2
+            <br>
+            Demand: 0
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_4fc24238cc1bbf81bb80bab4620659c6 = L.circleMarker(
+                [45.523823, -73.594362],
+                {"bubblingMouseEvents": true, "color": "#c2ea8c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c2ea8c", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_de95fdd2cb321d5011212e906e585083 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_cb1c54f63f820ce79095f71a7a680527 = $(`<div id="html_cb1c54f63f820ce79095f71a7a680527" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Saint-Laurent / Fairmount (51748)</h4>                 <h4>Distance from depot: 3.5 km</h4>             </div>             </div>`)[0];
+                popup_de95fdd2cb321d5011212e906e585083.setContent(html_cb1c54f63f820ce79095f71a7a680527);
+            
+        
+
+        circle_marker_4fc24238cc1bbf81bb80bab4620659c6.bindPopup(popup_de95fdd2cb321d5011212e906e585083)
+        ;
+
+        
+    
+    
+            circle_marker_4fc24238cc1bbf81bb80bab4620659c6.bindTooltip(
+                `<div>
+                     
+            <b>Saint-Laurent / Fairmount (51748)</b>
+            <br>
+            Route: 12
+            <br>
+            Step: 1
+            <br>
+            Demand: 88
+            <br>
+            Load: 88
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_ebf58e617e07fe8cf127d55837746a32 = L.circleMarker(
+                [45.503256, -73.575901],
+                {"bubblingMouseEvents": true, "color": "#c2ea8c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c2ea8c", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_d3f19ff37fdbcd5a835758ff950e0192 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a96b5e222aafb4be5aad2ac4eedc8baf = $(`<div id="html_a96b5e222aafb4be5aad2ac4eedc8baf" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Depot (0)</h4>                 <h4>Distance from depot: 0.0 km</h4>             </div>             </div>`)[0];
+                popup_d3f19ff37fdbcd5a835758ff950e0192.setContent(html_a96b5e222aafb4be5aad2ac4eedc8baf);
+            
+        
+
+        circle_marker_ebf58e617e07fe8cf127d55837746a32.bindPopup(popup_d3f19ff37fdbcd5a835758ff950e0192)
+        ;
+
+        
+    
+    
+            circle_marker_ebf58e617e07fe8cf127d55837746a32.bindTooltip(
+                `<div>
+                     
+            <b>Depot (0)</b>
+            <br>
+            Route: 0
+            <br>
+            Step: 2
+            <br>
+            Demand: 0
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_54d83ff27790570547b2f23f1970002a = L.circleMarker(
+                [45.529197, -73.625268],
+                {"bubblingMouseEvents": true, "color": "#ded579", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ded579", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_0de047892d04202cb732888e1db88984 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_12501fffccdb1a8510778e891c515d3c = $(`<div id="html_12501fffccdb1a8510778e891c515d3c" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Ogilvy / Querbes (51069)</h4>                 <h4>Distance from depot: 5.6 km</h4>             </div>             </div>`)[0];
+                popup_0de047892d04202cb732888e1db88984.setContent(html_12501fffccdb1a8510778e891c515d3c);
+            
+        
+
+        circle_marker_54d83ff27790570547b2f23f1970002a.bindPopup(popup_0de047892d04202cb732888e1db88984)
+        ;
+
+        
+    
+    
+            circle_marker_54d83ff27790570547b2f23f1970002a.bindTooltip(
+                `<div>
+                     
+            <b>Ogilvy / Querbes (51069)</b>
+            <br>
+            Route: 13
+            <br>
+            Step: 1
+            <br>
+            Demand: 72
+            <br>
+            Load: 72
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_3c17157a46e54868d34ea8a1af06b5bf = L.circleMarker(
+                [45.514425, -73.609653],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_5eb5bd5fc33c682c4f29012df7935504 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1d30b049e1e51f641eb6c8b1e129b745 = $(`<div id="html_1d30b049e1e51f641eb6c8b1e129b745" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Côte-Sainte-Catherine / Pagnuelo (56199)</h4>                 <h4>Distance from depot: 3.9 km</h4>             </div>             </div>`)[0];
+                popup_5eb5bd5fc33c682c4f29012df7935504.setContent(html_1d30b049e1e51f641eb6c8b1e129b745);
+            
+        
+
+        circle_marker_3c17157a46e54868d34ea8a1af06b5bf.bindPopup(popup_5eb5bd5fc33c682c4f29012df7935504)
+        ;
+
+        
+    
+    
+            circle_marker_3c17157a46e54868d34ea8a1af06b5bf.bindTooltip(
+                `<div>
+                     
+            <b>Côte-Sainte-Catherine / Pagnuelo (56199)</b>
+            <br>
+            Route: 4
+            <br>
+            Step: 1
+            <br>
+            Demand: 100
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: True
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_806ce8462952a99582a2ed81456ea02f = L.circleMarker(
+                [45.509167, -73.570755],
+                {"bubblingMouseEvents": true, "color": "#ded579", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ded579", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_9c7c82ac3eee7031b58fe1ec42987613 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_08458b038558fba4c37316bf89787e90 = $(`<div id="html_08458b038558fba4c37316bf89787e90" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Sherbrooke / Jeanne-Mance (52459)</h4>                 <h4>Distance from depot: 0.8 km</h4>             </div>             </div>`)[0];
+                popup_9c7c82ac3eee7031b58fe1ec42987613.setContent(html_08458b038558fba4c37316bf89787e90);
+            
+        
+
+        circle_marker_806ce8462952a99582a2ed81456ea02f.bindPopup(popup_9c7c82ac3eee7031b58fe1ec42987613)
+        ;
+
+        
+    
+    
+            circle_marker_806ce8462952a99582a2ed81456ea02f.bindTooltip(
+                `<div>
+                     
+            <b>Sherbrooke / Jeanne-Mance (52459)</b>
+            <br>
+            Route: 13
+            <br>
+            Step: 3
+            <br>
+            Demand: 21
+            <br>
+            Load: 98
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_e04b60400e3fc30203bc39818c6513e3 = L.circleMarker(
+                [45.503256, -73.575901],
+                {"bubblingMouseEvents": true, "color": "#ded579", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ded579", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_a49b9c8e90fdf1239b58b4b416a0bc6c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_fe72aedb367caa507e31d339dbc0f290 = $(`<div id="html_fe72aedb367caa507e31d339dbc0f290" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Depot (0)</h4>                 <h4>Distance from depot: 0.0 km</h4>             </div>             </div>`)[0];
+                popup_a49b9c8e90fdf1239b58b4b416a0bc6c.setContent(html_fe72aedb367caa507e31d339dbc0f290);
+            
+        
+
+        circle_marker_e04b60400e3fc30203bc39818c6513e3.bindPopup(popup_a49b9c8e90fdf1239b58b4b416a0bc6c)
+        ;
+
+        
+    
+    
+            circle_marker_e04b60400e3fc30203bc39818c6513e3.bindTooltip(
+                `<div>
+                     
+            <b>Depot (0)</b>
+            <br>
+            Route: 0
+            <br>
+            Step: 2
+            <br>
+            Demand: 0
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_fd840383638911af759919c85e503f68 = L.circleMarker(
+                [45.590246, -73.559273],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_cfb7c93e81ef05e98ec73f9191c5d0a7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8dbc60c6b623de477c9b0dec1f23dc78 = $(`<div id="html_8dbc60c6b623de477c9b0dec1f23dc78" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Beaubien / François-Boivin (52795)</h4>                 <h4>Distance from depot: 10.9 km</h4>             </div>             </div>`)[0];
+                popup_cfb7c93e81ef05e98ec73f9191c5d0a7.setContent(html_8dbc60c6b623de477c9b0dec1f23dc78);
+            
+        
+
+        circle_marker_fd840383638911af759919c85e503f68.bindPopup(popup_cfb7c93e81ef05e98ec73f9191c5d0a7)
+        ;
+
+        
+    
+    
+            circle_marker_fd840383638911af759919c85e503f68.bindTooltip(
+                `<div>
+                     
+            <b>Beaubien / François-Boivin (52795)</b>
+            <br>
+            Route: 1
+            <br>
+            Step: 1
+            <br>
+            Demand: 100
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: True
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_1a55e219a0875f40545d8ad5a0a0f522 = L.circleMarker(
+                [45.582842, -73.563674],
+                {"bubblingMouseEvents": true, "color": "#f9bb66", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f9bb66", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_ebd0bf01f370b9d06382eaa35813f731 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0bc55f3856db1dd7a5f808d58f4b3c14 = $(`<div id="html_0bc55f3856db1dd7a5f808d58f4b3c14" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Beaubien / Place Beaubien (53751)</h4>                 <h4>Distance from depot: 10.0 km</h4>             </div>             </div>`)[0];
+                popup_ebd0bf01f370b9d06382eaa35813f731.setContent(html_0bc55f3856db1dd7a5f808d58f4b3c14);
+            
+        
+
+        circle_marker_1a55e219a0875f40545d8ad5a0a0f522.bindPopup(popup_ebd0bf01f370b9d06382eaa35813f731)
+        ;
+
+        
+    
+    
+            circle_marker_1a55e219a0875f40545d8ad5a0a0f522.bindTooltip(
+                `<div>
+                     
+            <b>Beaubien / Place Beaubien (53751)</b>
+            <br>
+            Route: 14
+            <br>
+            Step: 2
+            <br>
+            Demand: 54
+            <br>
+            Load: 67
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_9e67cda694efdecebbcab095f93e63a2 = L.circleMarker(
+                [45.580168, -73.565258],
+                {"bubblingMouseEvents": true, "color": "#f9bb66", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f9bb66", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_b9ea804394ce0f9dd227dbc31db10131 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_42cee820bbcd3a0bd9d697510f47b1ba = $(`<div id="html_42cee820bbcd3a0bd9d697510f47b1ba" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Beaubien / Lacordaire (52603)</h4>                 <h4>Distance from depot: 9.7 km</h4>             </div>             </div>`)[0];
+                popup_b9ea804394ce0f9dd227dbc31db10131.setContent(html_42cee820bbcd3a0bd9d697510f47b1ba);
+            
+        
+
+        circle_marker_9e67cda694efdecebbcab095f93e63a2.bindPopup(popup_b9ea804394ce0f9dd227dbc31db10131)
+        ;
+
+        
+    
+    
+            circle_marker_9e67cda694efdecebbcab095f93e63a2.bindTooltip(
+                `<div>
+                     
+            <b>Beaubien / Lacordaire (52603)</b>
+            <br>
+            Route: 14
+            <br>
+            Step: 3
+            <br>
+            Demand: 4
+            <br>
+            Load: 71
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_c11a7c3648332de707d2d94b86a06b67 = L.circleMarker(
+                [45.545404, -73.594554],
+                {"bubblingMouseEvents": true, "color": "#f9bb66", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f9bb66", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_6d98b5c97b57643c8813830be7cad80f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_14245b34cae6c5b3871c3f424e65cef9 = $(`<div id="html_14245b34cae6c5b3871c3f424e65cef9" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Beaubien / De Lorimier (51741)</h4>                 <h4>Distance from depot: 6.2 km</h4>             </div>             </div>`)[0];
+                popup_6d98b5c97b57643c8813830be7cad80f.setContent(html_14245b34cae6c5b3871c3f424e65cef9);
+            
+        
+
+        circle_marker_c11a7c3648332de707d2d94b86a06b67.bindPopup(popup_6d98b5c97b57643c8813830be7cad80f)
+        ;
+
+        
+    
+    
+            circle_marker_c11a7c3648332de707d2d94b86a06b67.bindTooltip(
+                `<div>
+                     
+            <b>Beaubien / De Lorimier (51741)</b>
+            <br>
+            Route: 14
+            <br>
+            Step: 4
+            <br>
+            Demand: 19
+            <br>
+            Load: 90
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_16c9bc271ee8ff0f69fa1fb9c88e2a3f = L.circleMarker(
+                [45.531798, -73.565087],
+                {"bubblingMouseEvents": true, "color": "#f9bb66", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f9bb66", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_6643e6b865f2f2f101017dd28d450386 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_08b8868a586664bd8d703e5a848772a6 = $(`<div id="html_08b8868a586664bd8d703e5a848772a6" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>De Lorimier / Gauthier (52637)</h4>                 <h4>Distance from depot: 3.5 km</h4>             </div>             </div>`)[0];
+                popup_6643e6b865f2f2f101017dd28d450386.setContent(html_08b8868a586664bd8d703e5a848772a6);
+            
+        
+
+        circle_marker_16c9bc271ee8ff0f69fa1fb9c88e2a3f.bindPopup(popup_6643e6b865f2f2f101017dd28d450386)
+        ;
+
+        
+    
+    
+            circle_marker_16c9bc271ee8ff0f69fa1fb9c88e2a3f.bindTooltip(
+                `<div>
+                     
+            <b>De Lorimier / Gauthier (52637)</b>
+            <br>
+            Route: 14
+            <br>
+            Step: 5
+            <br>
+            Demand: 8
+            <br>
+            Load: 98
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_0814c785c52ef3772f2b169ab5bffbb5 = L.circleMarker(
+                [45.503256, -73.575901],
+                {"bubblingMouseEvents": true, "color": "#f9bb66", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f9bb66", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_fc5181766683719de74041741e72e7b5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_52c3fe1633bdc8a3fd4772ac493c60eb = $(`<div id="html_52c3fe1633bdc8a3fd4772ac493c60eb" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Depot (0)</h4>                 <h4>Distance from depot: 0.0 km</h4>             </div>             </div>`)[0];
+                popup_fc5181766683719de74041741e72e7b5.setContent(html_52c3fe1633bdc8a3fd4772ac493c60eb);
+            
+        
+
+        circle_marker_0814c785c52ef3772f2b169ab5bffbb5.bindPopup(popup_fc5181766683719de74041741e72e7b5)
+        ;
+
+        
+    
+    
+            circle_marker_0814c785c52ef3772f2b169ab5bffbb5.bindTooltip(
+                `<div>
+                     
+            <b>Depot (0)</b>
+            <br>
+            Route: 0
+            <br>
+            Step: 2
+            <br>
+            Demand: 0
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_02d927161531505c6b163d890c6647eb = L.circleMarker(
+                [45.518983, -73.594163],
+                {"bubblingMouseEvents": true, "color": "#ff9b52", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff9b52", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_4a09542032bf49119ec619372a9a7b43 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_34c6aa61fce107999d573374e1f48c17 = $(`<div id="html_34c6aa61fce107999d573374e1f48c17" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>du Parc / Saint-Joseph (51750)</h4>                 <h4>Distance from depot: 2.8 km</h4>             </div>             </div>`)[0];
+                popup_4a09542032bf49119ec619372a9a7b43.setContent(html_34c6aa61fce107999d573374e1f48c17);
+            
+        
+
+        circle_marker_02d927161531505c6b163d890c6647eb.bindPopup(popup_4a09542032bf49119ec619372a9a7b43)
+        ;
+
+        
+    
+    
+            circle_marker_02d927161531505c6b163d890c6647eb.bindTooltip(
+                `<div>
+                     
+            <b>du Parc / Saint-Joseph (51750)</b>
+            <br>
+            Route: 15
+            <br>
+            Step: 1
+            <br>
+            Demand: 66
+            <br>
+            Load: 66
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_11fedfcbe18056631e7bda0caa70019b = L.circleMarker(
+                [45.503256, -73.575901],
+                {"bubblingMouseEvents": true, "color": "#ff9b52", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff9b52", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_37e3a2f87e77f050414c58e72288938c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6d7182812217665e72caa5bcade638a7 = $(`<div id="html_6d7182812217665e72caa5bcade638a7" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Depot (0)</h4>                 <h4>Distance from depot: 0.0 km</h4>             </div>             </div>`)[0];
+                popup_37e3a2f87e77f050414c58e72288938c.setContent(html_6d7182812217665e72caa5bcade638a7);
+            
+        
+
+        circle_marker_11fedfcbe18056631e7bda0caa70019b.bindPopup(popup_37e3a2f87e77f050414c58e72288938c)
+        ;
+
+        
+    
+    
+            circle_marker_11fedfcbe18056631e7bda0caa70019b.bindTooltip(
+                `<div>
+                     
+            <b>Depot (0)</b>
+            <br>
+            Route: 0
+            <br>
+            Step: 2
+            <br>
+            Demand: 0
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_872d9b2ab68c18fd72ba1434aab19e8c = L.circleMarker(
+                [45.493304, -73.620431],
+                {"bubblingMouseEvents": true, "color": "#ff2914", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff2914", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_c6904bacb15eb3802527ebc26f0e35a3 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_eb16ed340a630fd7b6647575ae421483 = $(`<div id="html_eb16ed340a630fd7b6647575ae421483" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Queen-Mary / du Frère-André (Oratoire St-Joseph) (53677)</h4>                 <h4>Distance from depot: 4.1 km</h4>             </div>             </div>`)[0];
+                popup_c6904bacb15eb3802527ebc26f0e35a3.setContent(html_eb16ed340a630fd7b6647575ae421483);
+            
+        
+
+        circle_marker_872d9b2ab68c18fd72ba1434aab19e8c.bindPopup(popup_c6904bacb15eb3802527ebc26f0e35a3)
+        ;
+
+        
+    
+    
+            circle_marker_872d9b2ab68c18fd72ba1434aab19e8c.bindTooltip(
+                `<div>
+                     
+            <b>Queen-Mary / du Frère-André (Oratoire St-Joseph) (53677)</b>
+            <br>
+            Route: 18
+            <br>
+            Step: 1
+            <br>
+            Demand: 33
+            <br>
+            Load: 33
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_9297444638db33450b7098ed788db7b1 = L.circleMarker(
+                [45.469159, -73.641912],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_4383c018c09e7b86ce03d48257d40424 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_038e0aca089ff91795558ef6ad3f7472 = $(`<div id="html_038e0aca089ff91795558ef6ad3f7472" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Fielding / Cavendish (50727)</h4>                 <h4>Distance from depot: 8.1 km</h4>             </div>             </div>`)[0];
+                popup_4383c018c09e7b86ce03d48257d40424.setContent(html_038e0aca089ff91795558ef6ad3f7472);
+            
+        
+
+        circle_marker_9297444638db33450b7098ed788db7b1.bindPopup(popup_4383c018c09e7b86ce03d48257d40424)
+        ;
+
+        
+    
+    
+            circle_marker_9297444638db33450b7098ed788db7b1.bindTooltip(
+                `<div>
+                     
+            <b>Fielding / Cavendish (50727)</b>
+            <br>
+            Route: 2
+            <br>
+            Step: 1
+            <br>
+            Demand: 100
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: True
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_74b1ffc46f8e63567d0181b842566c29 = L.circleMarker(
+                [45.481833, -73.630576],
+                {"bubblingMouseEvents": true, "color": "#ff2914", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff2914", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_451fabecb87558ad0b0a15a8250c4b80 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7da6b4d64539dd5eff17cc59d98e4b3c = $(`<div id="html_7da6b4d64539dd5eff17cc59d98e4b3c" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Queen-Mary / Earnscliffe (50986)</h4>                 <h4>Distance from depot: 5.6 km</h4>             </div>             </div>`)[0];
+                popup_451fabecb87558ad0b0a15a8250c4b80.setContent(html_7da6b4d64539dd5eff17cc59d98e4b3c);
+            
+        
+
+        circle_marker_74b1ffc46f8e63567d0181b842566c29.bindPopup(popup_451fabecb87558ad0b0a15a8250c4b80)
+        ;
+
+        
+    
+    
+            circle_marker_74b1ffc46f8e63567d0181b842566c29.bindTooltip(
+                `<div>
+                     
+            <b>Queen-Mary / Earnscliffe (50986)</b>
+            <br>
+            Route: 18
+            <br>
+            Step: 3
+            <br>
+            Demand: 27
+            <br>
+            Load: 97
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_a80e885ea8626155be083c0d7697726c = L.circleMarker(
+                [45.503256, -73.575901],
+                {"bubblingMouseEvents": true, "color": "#ff2914", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff2914", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_1c0f0d4be83828fb2df8bf90d5b540cb = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e55b256ede2c9a0f8945179a05ba2b75 = $(`<div id="html_e55b256ede2c9a0f8945179a05ba2b75" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Depot (0)</h4>                 <h4>Distance from depot: 0.0 km</h4>             </div>             </div>`)[0];
+                popup_1c0f0d4be83828fb2df8bf90d5b540cb.setContent(html_e55b256ede2c9a0f8945179a05ba2b75);
+            
+        
+
+        circle_marker_a80e885ea8626155be083c0d7697726c.bindPopup(popup_1c0f0d4be83828fb2df8bf90d5b540cb)
+        ;
+
+        
+    
+    
+            circle_marker_a80e885ea8626155be083c0d7697726c.bindTooltip(
+                `<div>
+                     
+            <b>Depot (0)</b>
+            <br>
+            Route: 0
+            <br>
+            Step: 2
+            <br>
+            Demand: 0
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_e77e6c5ce46b1bcf8213abcd25f79fa6 = L.circleMarker(
+                [45.501628, -73.576634],
+                {"bubblingMouseEvents": true, "color": "#ff0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_047669e7b21f6d8fde56618e97e9c58e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0e98ccb7f9b3020a816c9d00e48f054b = $(`<div id="html_0e98ccb7f9b3020a816c9d00e48f054b" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Sherbrooke / Peel (52277)</h4>                 <h4>Distance from depot: 0.2 km</h4>             </div>             </div>`)[0];
+                popup_047669e7b21f6d8fde56618e97e9c58e.setContent(html_0e98ccb7f9b3020a816c9d00e48f054b);
+            
+        
+
+        circle_marker_e77e6c5ce46b1bcf8213abcd25f79fa6.bindPopup(popup_047669e7b21f6d8fde56618e97e9c58e)
+        ;
+
+        
+    
+    
+            circle_marker_e77e6c5ce46b1bcf8213abcd25f79fa6.bindTooltip(
+                `<div>
+                     
+            <b>Sherbrooke / Peel (52277)</b>
+            <br>
+            Route: 19
+            <br>
+            Step: 1
+            <br>
+            Demand: 40
+            <br>
+            Load: 40
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_457e8af84175e363051c88485e088fd9 = L.circleMarker(
+                [45.503256, -73.575901],
+                {"bubblingMouseEvents": true, "color": "#ff0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_5031061cf4cdd0781542a160b4963317 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1f748ebd423112a8dcd33faed0051c3b = $(`<div id="html_1f748ebd423112a8dcd33faed0051c3b" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Depot (0)</h4>                 <h4>Distance from depot: 0.0 km</h4>             </div>             </div>`)[0];
+                popup_5031061cf4cdd0781542a160b4963317.setContent(html_1f748ebd423112a8dcd33faed0051c3b);
+            
+        
+
+        circle_marker_457e8af84175e363051c88485e088fd9.bindPopup(popup_5031061cf4cdd0781542a160b4963317)
+        ;
+
+        
+    
+    
+            circle_marker_457e8af84175e363051c88485e088fd9.bindTooltip(
+                `<div>
+                     
+            <b>Depot (0)</b>
+            <br>
+            Route: 0
+            <br>
+            Step: 2
+            <br>
+            Demand: 0
+            <br>
+            Load: 100
+            <br>
+            Has split demand?: False
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_5b3447c0b7d90bb6b4492e450a4abf56 = L.circleMarker(
+                [45.557554, -73.628413],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_60f0702507639511340aa2961e8379c2 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b28c030285377f991857240f52e4bc87 = $(`<div id="html_b28c030285377f991857240f52e4bc87" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Papineau / François-H.-Prévost (50983)</h4>                 <h4>Distance from depot: 9.1 km</h4>             </div>             </div>`)[0];
+                popup_60f0702507639511340aa2961e8379c2.setContent(html_b28c030285377f991857240f52e4bc87);
+            
+        
+
+        circle_marker_5b3447c0b7d90bb6b4492e450a4abf56.bindPopup(popup_60f0702507639511340aa2961e8379c2)
+        ;
+
+        
+    
+    
+            circle_marker_5b3447c0b7d90bb6b4492e450a4abf56.bindTooltip(
+                `<div>
+                     
+            <b>Papineau / François-H.-Prévost (50983)</b>
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_920004dd6d60a78f9396429459c03d18 = L.circleMarker(
+                [45.546222, -73.656965],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_e2e9360f9f1bd1825d846897a96ac666 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_14d283465a1af03f1e62566c9a7dd12c = $(`<div id="html_14d283465a1af03f1e62566c9a7dd12c" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Saint-Laurent / de Port-Royal (50422)</h4>                 <h4>Distance from depot: 9.0 km</h4>             </div>             </div>`)[0];
+                popup_e2e9360f9f1bd1825d846897a96ac666.setContent(html_14d283465a1af03f1e62566c9a7dd12c);
+            
+        
+
+        circle_marker_920004dd6d60a78f9396429459c03d18.bindPopup(popup_e2e9360f9f1bd1825d846897a96ac666)
+        ;
+
+        
+    
+    
+            circle_marker_920004dd6d60a78f9396429459c03d18.bindTooltip(
+                `<div>
+                     
+            <b>Saint-Laurent / de Port-Royal (50422)</b>
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_eabc7d6bb8d65169075bcfc4b6d528af = L.circleMarker(
+                [45.554262, -73.668563],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_fc1e1b1b093ded13038ce6f69036c42c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_83017a7d05f0f2536f598332837a0237 = $(`<div id="html_83017a7d05f0f2536f598332837a0237" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Station Henri-Bourassa (50303)</h4>                 <h4>Distance from depot: 10.7 km</h4>             </div>             </div>`)[0];
+                popup_fc1e1b1b093ded13038ce6f69036c42c.setContent(html_83017a7d05f0f2536f598332837a0237);
+            
+        
+
+        circle_marker_eabc7d6bb8d65169075bcfc4b6d528af.bindPopup(popup_fc1e1b1b093ded13038ce6f69036c42c)
+        ;
+
+        
+    
+    
+            circle_marker_eabc7d6bb8d65169075bcfc4b6d528af.bindTooltip(
+                `<div>
+                     
+            <b>Station Henri-Bourassa (50303)</b>
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_9b94885f00e410d09ff8d2f70c08d481 = L.circleMarker(
+                [45.569139, -73.655548],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+        var popup_b30cf5fba8025921139c604d1a8e6084 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_12ad271786425ca74bf11fc8b94fdce8 = $(`<div id="html_12ad271786425ca74bf11fc8b94fdce8" style="width: 100.0%; height: 100.0%;">             <div>                 <h4>Papineau / Prieur (50431)</h4>                 <h4>Distance from depot: 11.5 km</h4>             </div>             </div>`)[0];
+                popup_b30cf5fba8025921139c604d1a8e6084.setContent(html_12ad271786425ca74bf11fc8b94fdce8);
+            
+        
+
+        circle_marker_9b94885f00e410d09ff8d2f70c08d481.bindPopup(popup_b30cf5fba8025921139c604d1a8e6084)
+        ;
+
+        
+    
+    
+            circle_marker_9b94885f00e410d09ff8d2f70c08d481.bindTooltip(
+                `<div>
+                     
+            <b>Papineau / Prieur (50431)</b>
+            
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var feature_group_7578bb4902e66be9e940133d99d3bcc0 = L.featureGroup(
+                {}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+            var poly_line_0c98162251d4f08efba38ccfb601fcce = L.polyline(
+                [[45.503256, -73.575901], [45.463498, -73.629216], [45.503256, -73.575901]],
+                {"bubblingMouseEvents": true, "color": "#8000ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#8000ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7578bb4902e66be9e940133d99d3bcc0);
+        
+    
+        var popup_9be9b54cc50e7c2e31918e9991acd6ba = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4b055723472674f26370d6a13e7daf92 = $(`<div id="html_4b055723472674f26370d6a13e7daf92" style="width: 100.0%; height: 100.0%;">             <div>                 <h5>Route 0</h5>                 <h5>Total demand: 100</h5>             </div>             </div>`)[0];
+                popup_9be9b54cc50e7c2e31918e9991acd6ba.setContent(html_4b055723472674f26370d6a13e7daf92);
+            
+        
+
+        poly_line_0c98162251d4f08efba38ccfb601fcce.bindPopup(popup_9be9b54cc50e7c2e31918e9991acd6ba)
+        ;
+
+        
+    
+    
+            poly_line_0c98162251d4f08efba38ccfb601fcce.bindTooltip(
+                `<div>
+                     Route 0
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var feature_group_dfe90dda117cbd0d8d52a2eed62b71f2 = L.featureGroup(
+                {}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+            var poly_line_6a0464502908fbc0d768257715ddbc78 = L.polyline(
+                [[45.503256, -73.575901], [45.590246, -73.559273], [45.503256, -73.575901]],
+                {"bubblingMouseEvents": true, "color": "#6629fe", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#6629fe", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_dfe90dda117cbd0d8d52a2eed62b71f2);
+        
+    
+        var popup_4f4b7ad35c7e912ae2bb8f79268a7472 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d45848984518a2e9910633ede585cc74 = $(`<div id="html_d45848984518a2e9910633ede585cc74" style="width: 100.0%; height: 100.0%;">             <div>                 <h5>Route 1</h5>                 <h5>Total demand: 100</h5>             </div>             </div>`)[0];
+                popup_4f4b7ad35c7e912ae2bb8f79268a7472.setContent(html_d45848984518a2e9910633ede585cc74);
+            
+        
+
+        poly_line_6a0464502908fbc0d768257715ddbc78.bindPopup(popup_4f4b7ad35c7e912ae2bb8f79268a7472)
+        ;
+
+        
+    
+    
+            poly_line_6a0464502908fbc0d768257715ddbc78.bindTooltip(
+                `<div>
+                     Route 1
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var feature_group_2703df8707f0a8e354ce97f7349e89fe = L.featureGroup(
+                {}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+            var poly_line_13ba6e42d522d764829289a6b365c73d = L.polyline(
+                [[45.503256, -73.575901], [45.469159, -73.641912], [45.503256, -73.575901]],
+                {"bubblingMouseEvents": true, "color": "#4c50fc", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#4c50fc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_2703df8707f0a8e354ce97f7349e89fe);
+        
+    
+        var popup_753e860a9e6123fea78b8c47834b55e5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_190ef34a74ab23af519d761fa04fc8a3 = $(`<div id="html_190ef34a74ab23af519d761fa04fc8a3" style="width: 100.0%; height: 100.0%;">             <div>                 <h5>Route 2</h5>                 <h5>Total demand: 100</h5>             </div>             </div>`)[0];
+                popup_753e860a9e6123fea78b8c47834b55e5.setContent(html_190ef34a74ab23af519d761fa04fc8a3);
+            
+        
+
+        poly_line_13ba6e42d522d764829289a6b365c73d.bindPopup(popup_753e860a9e6123fea78b8c47834b55e5)
+        ;
+
+        
+    
+    
+            poly_line_13ba6e42d522d764829289a6b365c73d.bindTooltip(
+                `<div>
+                     Route 2
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var feature_group_b1f8a810ded73b426b6c553577c3d98a = L.featureGroup(
+                {}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+            var poly_line_ccb97a748c7b7024385c84ba3ffc0a32 = L.polyline(
+                [[45.503256, -73.575901], [45.52606, -73.587891], [45.503256, -73.575901]],
+                {"bubblingMouseEvents": true, "color": "#3079f7", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3079f7", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_b1f8a810ded73b426b6c553577c3d98a);
+        
+    
+        var popup_a9d1bab3acc70e3a4c4eb3cd108a2bfd = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ae4ac3a8f5e6319cfe3d482e1f53f94f = $(`<div id="html_ae4ac3a8f5e6319cfe3d482e1f53f94f" style="width: 100.0%; height: 100.0%;">             <div>                 <h5>Route 3</h5>                 <h5>Total demand: 100</h5>             </div>             </div>`)[0];
+                popup_a9d1bab3acc70e3a4c4eb3cd108a2bfd.setContent(html_ae4ac3a8f5e6319cfe3d482e1f53f94f);
+            
+        
+
+        poly_line_ccb97a748c7b7024385c84ba3ffc0a32.bindPopup(popup_a9d1bab3acc70e3a4c4eb3cd108a2bfd)
+        ;
+
+        
+    
+    
+            poly_line_ccb97a748c7b7024385c84ba3ffc0a32.bindTooltip(
+                `<div>
+                     Route 3
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var feature_group_f2757d645c2e90f0f45063751807e34a = L.featureGroup(
+                {}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+            var poly_line_7b56f4151135fc704b61f5db6a9d6a57 = L.polyline(
+                [[45.503256, -73.575901], [45.514425, -73.609653], [45.503256, -73.575901]],
+                {"bubblingMouseEvents": true, "color": "#169bf2", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#169bf2", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_f2757d645c2e90f0f45063751807e34a);
+        
+    
+        var popup_15f061eb442d232d64c1b955e26adde1 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1f65517d6ac6b92ebdbd324a6fd76cba = $(`<div id="html_1f65517d6ac6b92ebdbd324a6fd76cba" style="width: 100.0%; height: 100.0%;">             <div>                 <h5>Route 4</h5>                 <h5>Total demand: 100</h5>             </div>             </div>`)[0];
+                popup_15f061eb442d232d64c1b955e26adde1.setContent(html_1f65517d6ac6b92ebdbd324a6fd76cba);
+            
+        
+
+        poly_line_7b56f4151135fc704b61f5db6a9d6a57.bindPopup(popup_15f061eb442d232d64c1b955e26adde1)
+        ;
+
+        
+    
+    
+            poly_line_7b56f4151135fc704b61f5db6a9d6a57.bindTooltip(
+                `<div>
+                     Route 4
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var feature_group_872136eda16732ec495272d18a2f7036 = L.featureGroup(
+                {}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+            var poly_line_8a24047c9b2cc99f17a5f7d59d13a366 = L.polyline(
+                [[45.503256, -73.575901], [45.479704, -73.619643], [45.484048, -73.628631], [45.503256, -73.575901]],
+                {"bubblingMouseEvents": true, "color": "#07bbea", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#07bbea", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_872136eda16732ec495272d18a2f7036);
+        
+    
+        var popup_33ec0eff7400d926ea49ae7caafc6476 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0c10a7f0c1722a4e176e5b34ac512a24 = $(`<div id="html_0c10a7f0c1722a4e176e5b34ac512a24" style="width: 100.0%; height: 100.0%;">             <div>                 <h5>Route 5</h5>                 <h5>Total demand: 97</h5>             </div>             </div>`)[0];
+                popup_33ec0eff7400d926ea49ae7caafc6476.setContent(html_0c10a7f0c1722a4e176e5b34ac512a24);
+            
+        
+
+        poly_line_8a24047c9b2cc99f17a5f7d59d13a366.bindPopup(popup_33ec0eff7400d926ea49ae7caafc6476)
+        ;
+
+        
+    
+    
+            poly_line_8a24047c9b2cc99f17a5f7d59d13a366.bindTooltip(
+                `<div>
+                     Route 5
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var feature_group_f3a2979d6cb0dcd4149a6603d1e83345 = L.featureGroup(
+                {}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+            var poly_line_88558090b09b5485be740261ca2788fd = L.polyline(
+                [[45.503256, -73.575901], [45.547472, -73.592774], [45.549551, -73.567988], [45.503256, -73.575901]],
+                {"bubblingMouseEvents": true, "color": "#20d5e1", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#20d5e1", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_f3a2979d6cb0dcd4149a6603d1e83345);
+        
+    
+        var popup_c407c9d53150ce8aad4d6954bde85d37 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_410adf4707b443a769905ac163e78e3c = $(`<div id="html_410adf4707b443a769905ac163e78e3c" style="width: 100.0%; height: 100.0%;">             <div>                 <h5>Route 6</h5>                 <h5>Total demand: 100</h5>             </div>             </div>`)[0];
+                popup_c407c9d53150ce8aad4d6954bde85d37.setContent(html_410adf4707b443a769905ac163e78e3c);
+            
+        
+
+        poly_line_88558090b09b5485be740261ca2788fd.bindPopup(popup_c407c9d53150ce8aad4d6954bde85d37)
+        ;
+
+        
+    
+    
+            poly_line_88558090b09b5485be740261ca2788fd.bindTooltip(
+                `<div>
+                     Route 6
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var feature_group_facd58611ebaaf6f3e96d384e73c11ea = L.featureGroup(
+                {}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+            var poly_line_90e468ff63a0e019178c7b97d9aab40b = L.polyline(
+                [[45.503256, -73.575901], [45.524456, -73.564917], [45.539114, -73.58777], [45.503256, -73.575901]],
+                {"bubblingMouseEvents": true, "color": "#56f7ca", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#56f7ca", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_facd58611ebaaf6f3e96d384e73c11ea);
+        
+    
+        var popup_3ac1b0099a01b1119fa47a4968f1ad15 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4185166077e6e94b51e17108df11d738 = $(`<div id="html_4185166077e6e94b51e17108df11d738" style="width: 100.0%; height: 100.0%;">             <div>                 <h5>Route 8</h5>                 <h5>Total demand: 98</h5>             </div>             </div>`)[0];
+                popup_3ac1b0099a01b1119fa47a4968f1ad15.setContent(html_4185166077e6e94b51e17108df11d738);
+            
+        
+
+        poly_line_90e468ff63a0e019178c7b97d9aab40b.bindPopup(popup_3ac1b0099a01b1119fa47a4968f1ad15)
+        ;
+
+        
+    
+    
+            poly_line_90e468ff63a0e019178c7b97d9aab40b.bindTooltip(
+                `<div>
+                     Route 8
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var feature_group_ae0d9e32f8ccefdb2945f0616db921fb = L.featureGroup(
+                {}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+            var poly_line_e410f44882c525088d42203ff30e8901 = L.polyline(
+                [[45.503256, -73.575901], [45.463498, -73.629216], [45.476312, -73.613443], [45.503256, -73.575901]],
+                {"bubblingMouseEvents": true, "color": "#72febb", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#72febb", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_ae0d9e32f8ccefdb2945f0616db921fb);
+        
+    
+        var popup_8de8bf206c53a80cd276eb0a09e6ed8c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c1038e7a4e238e0c9b9c8578178d28e3 = $(`<div id="html_c1038e7a4e238e0c9b9c8578178d28e3" style="width: 100.0%; height: 100.0%;">             <div>                 <h5>Route 9</h5>                 <h5>Total demand: 92</h5>             </div>             </div>`)[0];
+                popup_8de8bf206c53a80cd276eb0a09e6ed8c.setContent(html_c1038e7a4e238e0c9b9c8578178d28e3);
+            
+        
+
+        poly_line_e410f44882c525088d42203ff30e8901.bindPopup(popup_8de8bf206c53a80cd276eb0a09e6ed8c)
+        ;
+
+        
+    
+    
+            poly_line_e410f44882c525088d42203ff30e8901.bindTooltip(
+                `<div>
+                     Route 9
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var feature_group_a5af915a0a93a062ece34b71c8508b7b = L.featureGroup(
+                {}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+            var poly_line_6b01aec3a76bbc1cb8b8160521aa992a = L.polyline(
+                [[45.503256, -73.575901], [45.512705, -73.569769], [45.52606, -73.587891], [45.511244, -73.566593], [45.509852, -73.563637], [45.503256, -73.575901]],
+                {"bubblingMouseEvents": true, "color": "#8cfead", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#8cfead", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a5af915a0a93a062ece34b71c8508b7b);
+        
+    
+        var popup_5a6d5dcc746c47ba7271c03f34dd23b5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_53c31b9af015f8787f7f1f00905f64f2 = $(`<div id="html_53c31b9af015f8787f7f1f00905f64f2" style="width: 100.0%; height: 100.0%;">             <div>                 <h5>Route 10</h5>                 <h5>Total demand: 84</h5>             </div>             </div>`)[0];
+                popup_5a6d5dcc746c47ba7271c03f34dd23b5.setContent(html_53c31b9af015f8787f7f1f00905f64f2);
+            
+        
+
+        poly_line_6b01aec3a76bbc1cb8b8160521aa992a.bindPopup(popup_5a6d5dcc746c47ba7271c03f34dd23b5)
+        ;
+
+        
+    
+    
+            poly_line_6b01aec3a76bbc1cb8b8160521aa992a.bindTooltip(
+                `<div>
+                     Route 10
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var feature_group_94951911bb96b3e78208e62375882d87 = L.featureGroup(
+                {}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+            var poly_line_681603b1bdc17e65d47a3885f6aad795 = L.polyline(
+                [[45.503256, -73.575901], [45.523823, -73.594362], [45.503256, -73.575901]],
+                {"bubblingMouseEvents": true, "color": "#c2ea8c", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#c2ea8c", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_94951911bb96b3e78208e62375882d87);
+        
+    
+        var popup_e2bee34ece40ad9eadcc3e69ae89cfc6 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f03b640657988dd91fd462a87b80927c = $(`<div id="html_f03b640657988dd91fd462a87b80927c" style="width: 100.0%; height: 100.0%;">             <div>                 <h5>Route 12</h5>                 <h5>Total demand: 88</h5>             </div>             </div>`)[0];
+                popup_e2bee34ece40ad9eadcc3e69ae89cfc6.setContent(html_f03b640657988dd91fd462a87b80927c);
+            
+        
+
+        poly_line_681603b1bdc17e65d47a3885f6aad795.bindPopup(popup_e2bee34ece40ad9eadcc3e69ae89cfc6)
+        ;
+
+        
+    
+    
+            poly_line_681603b1bdc17e65d47a3885f6aad795.bindTooltip(
+                `<div>
+                     Route 12
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var feature_group_a3bcb2abb4be5dea60e72d7b6319b687 = L.featureGroup(
+                {}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+            var poly_line_65b77249f9ec2847ba61f316cfed153e = L.polyline(
+                [[45.503256, -73.575901], [45.529197, -73.625268], [45.514425, -73.609653], [45.509167, -73.570755], [45.503256, -73.575901]],
+                {"bubblingMouseEvents": true, "color": "#ded579", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#ded579", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a3bcb2abb4be5dea60e72d7b6319b687);
+        
+    
+        var popup_5d1b5efaecde53c6e7810fa3bda8f73b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_aa6cd5b5d1d0e7bba28bf28a25f92e01 = $(`<div id="html_aa6cd5b5d1d0e7bba28bf28a25f92e01" style="width: 100.0%; height: 100.0%;">             <div>                 <h5>Route 13</h5>                 <h5>Total demand: 98</h5>             </div>             </div>`)[0];
+                popup_5d1b5efaecde53c6e7810fa3bda8f73b.setContent(html_aa6cd5b5d1d0e7bba28bf28a25f92e01);
+            
+        
+
+        poly_line_65b77249f9ec2847ba61f316cfed153e.bindPopup(popup_5d1b5efaecde53c6e7810fa3bda8f73b)
+        ;
+
+        
+    
+    
+            poly_line_65b77249f9ec2847ba61f316cfed153e.bindTooltip(
+                `<div>
+                     Route 13
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var feature_group_a8b1b70d312e5024ca868d0f15d0756b = L.featureGroup(
+                {}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+            var poly_line_cf305de8b0fd75b07ac210235c830273 = L.polyline(
+                [[45.503256, -73.575901], [45.590246, -73.559273], [45.582842, -73.563674], [45.580168, -73.565258], [45.545404, -73.594554], [45.531798, -73.565087], [45.503256, -73.575901]],
+                {"bubblingMouseEvents": true, "color": "#f9bb66", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#f9bb66", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a8b1b70d312e5024ca868d0f15d0756b);
+        
+    
+        var popup_d92711a53758ed67f90cf1a83e46cf6d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8777f8f3ba8231f843068e621de72118 = $(`<div id="html_8777f8f3ba8231f843068e621de72118" style="width: 100.0%; height: 100.0%;">             <div>                 <h5>Route 14</h5>                 <h5>Total demand: 98</h5>             </div>             </div>`)[0];
+                popup_d92711a53758ed67f90cf1a83e46cf6d.setContent(html_8777f8f3ba8231f843068e621de72118);
+            
+        
+
+        poly_line_cf305de8b0fd75b07ac210235c830273.bindPopup(popup_d92711a53758ed67f90cf1a83e46cf6d)
+        ;
+
+        
+    
+    
+            poly_line_cf305de8b0fd75b07ac210235c830273.bindTooltip(
+                `<div>
+                     Route 14
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var feature_group_78cf4a9843f4429a0b7fd6a3e7605318 = L.featureGroup(
+                {}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+            var poly_line_c47bf751564711632cf5888170f40b22 = L.polyline(
+                [[45.503256, -73.575901], [45.518983, -73.594163], [45.503256, -73.575901]],
+                {"bubblingMouseEvents": true, "color": "#ff9b52", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#ff9b52", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_78cf4a9843f4429a0b7fd6a3e7605318);
+        
+    
+        var popup_3d3b4c929dbb54adc9c09331a50e754b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d51992383bd9369357933dbdb42d9b49 = $(`<div id="html_d51992383bd9369357933dbdb42d9b49" style="width: 100.0%; height: 100.0%;">             <div>                 <h5>Route 15</h5>                 <h5>Total demand: 66</h5>             </div>             </div>`)[0];
+                popup_3d3b4c929dbb54adc9c09331a50e754b.setContent(html_d51992383bd9369357933dbdb42d9b49);
+            
+        
+
+        poly_line_c47bf751564711632cf5888170f40b22.bindPopup(popup_3d3b4c929dbb54adc9c09331a50e754b)
+        ;
+
+        
+    
+    
+            poly_line_c47bf751564711632cf5888170f40b22.bindTooltip(
+                `<div>
+                     Route 15
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var feature_group_185bb91b4c311ad7467fc524fb079ab9 = L.featureGroup(
+                {}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+            var poly_line_01d054d3ae53d4fd81dd86b078b2108d = L.polyline(
+                [[45.503256, -73.575901], [45.493304, -73.620431], [45.469159, -73.641912], [45.481833, -73.630576], [45.503256, -73.575901]],
+                {"bubblingMouseEvents": true, "color": "#ff2914", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#ff2914", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_185bb91b4c311ad7467fc524fb079ab9);
+        
+    
+        var popup_86fd68ac55722c57404b826c327f19d2 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d257bc24b13ec96628fac24f43075d2f = $(`<div id="html_d257bc24b13ec96628fac24f43075d2f" style="width: 100.0%; height: 100.0%;">             <div>                 <h5>Route 18</h5>                 <h5>Total demand: 97</h5>             </div>             </div>`)[0];
+                popup_86fd68ac55722c57404b826c327f19d2.setContent(html_d257bc24b13ec96628fac24f43075d2f);
+            
+        
+
+        poly_line_01d054d3ae53d4fd81dd86b078b2108d.bindPopup(popup_86fd68ac55722c57404b826c327f19d2)
+        ;
+
+        
+    
+    
+            poly_line_01d054d3ae53d4fd81dd86b078b2108d.bindTooltip(
+                `<div>
+                     Route 18
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var feature_group_282811b0c5a673022b24a5e291c1879d = L.featureGroup(
+                {}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+            var poly_line_a591b71b8cd0ac0703e51d250762282d = L.polyline(
+                [[45.503256, -73.575901], [45.501628, -73.576634], [45.503256, -73.575901]],
+                {"bubblingMouseEvents": true, "color": "#ff0000", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#ff0000", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_282811b0c5a673022b24a5e291c1879d);
+        
+    
+        var popup_2b1fd71d858f206c26744cdd9fb125b6 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_83905aefe30100ef1cea6fe63c08fb14 = $(`<div id="html_83905aefe30100ef1cea6fe63c08fb14" style="width: 100.0%; height: 100.0%;">             <div>                 <h5>Route 19</h5>                 <h5>Total demand: 40</h5>             </div>             </div>`)[0];
+                popup_2b1fd71d858f206c26744cdd9fb125b6.setContent(html_83905aefe30100ef1cea6fe63c08fb14);
+            
+        
+
+        poly_line_a591b71b8cd0ac0703e51d250762282d.bindPopup(popup_2b1fd71d858f206c26744cdd9fb125b6)
+        ;
+
+        
+    
+    
+            poly_line_a591b71b8cd0ac0703e51d250762282d.bindTooltip(
+                `<div>
+                     Route 19
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            L.control.fullscreen(
+                {"forceSeparateButton": false, "position": "topright", "title": "Full Screen", "titleCancel": "Exit Full Screen"}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+    
+            var mouse_position_a50d37647c47856999e7e4fe7ffb9751 = new L.Control.MousePosition(
+                {"emptyString": "Unavailable", "lngFirst": false, "numDigits": 5, "position": "topright", "prefix": "", "separator": " : "}
+            );
+            mouse_position_a50d37647c47856999e7e4fe7ffb9751.options["latFormatter"] =
+                undefined;
+            mouse_position_a50d37647c47856999e7e4fe7ffb9751.options["lngFormatter"] =
+                undefined;
+            map_8cf46969a08e57559b0d6998b0075d01.addControl(mouse_position_a50d37647c47856999e7e4fe7ffb9751);
+        
+    
+            var layer_control_27b5d213b3a6bc17887a97536ecc432e = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_df0cd049691fe8cff85e72f65eccc7e6,
+                },
+                overlays :  {
+                    "Disaster area" : geo_json_5add0a3f979de96c481325cf9621e24e,
+                    "Individual stops" : marker_cluster_ec61e8d0137814805129f85d6ade3499,
+                    "Route 0" : feature_group_7578bb4902e66be9e940133d99d3bcc0,
+                    "Route 1" : feature_group_dfe90dda117cbd0d8d52a2eed62b71f2,
+                    "Route 2" : feature_group_2703df8707f0a8e354ce97f7349e89fe,
+                    "Route 3" : feature_group_b1f8a810ded73b426b6c553577c3d98a,
+                    "Route 4" : feature_group_f2757d645c2e90f0f45063751807e34a,
+                    "Route 5" : feature_group_872136eda16732ec495272d18a2f7036,
+                    "Route 6" : feature_group_f3a2979d6cb0dcd4149a6603d1e83345,
+                    "Route 8" : feature_group_facd58611ebaaf6f3e96d384e73c11ea,
+                    "Route 9" : feature_group_ae0d9e32f8ccefdb2945f0616db921fb,
+                    "Route 10" : feature_group_a5af915a0a93a062ece34b71c8508b7b,
+                    "Route 12" : feature_group_94951911bb96b3e78208e62375882d87,
+                    "Route 13" : feature_group_a3bcb2abb4be5dea60e72d7b6319b687,
+                    "Route 14" : feature_group_a8b1b70d312e5024ca868d0f15d0756b,
+                    "Route 15" : feature_group_78cf4a9843f4429a0b7fd6a3e7605318,
+                    "Route 18" : feature_group_185bb91b4c311ad7467fc524fb079ab9,
+                    "Route 19" : feature_group_282811b0c5a673022b24a5e291c1879d,
+                },
+            };
+            L.control.layers(
+                layer_control_27b5d213b3a6bc17887a97536ecc432e.base_layers,
+                layer_control_27b5d213b3a6bc17887a97536ecc432e.overlays,
+                {"autoZIndex": true, "collapsed": true, "position": "topright"}
+            ).addTo(map_8cf46969a08e57559b0d6998b0075d01);
+        
+</script>
+</html>

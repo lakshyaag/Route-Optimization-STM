@@ -22,7 +22,7 @@ if "model_" not in st.session_state:
     st.session_state.model_solved = None
 
 # Page configuration
-st.set_page_config(page_title="Route Optimization Model", layout="wide")
+st.set_page_config(page_title="MGSC 662 - Route Optimization Model", layout="wide")
 
 st.sidebar.header("Model parameters")
 # Use sliders, number inputs, etc., to get user input
@@ -75,7 +75,7 @@ if IS_DATA_LOADED:
 
     stops_df_gpd = load.get_stops_on_route(route_list, segments_df, stops_df)
 
-    random_stops_df_gpd = load.get_random_stops(stops_df_gpd, 30, 662)
+    random_stops_df_gpd = load.get_random_stops(stops_df_gpd, 25, 662)
 
     col1, col2 = st.columns(2)
 
@@ -138,8 +138,6 @@ if IS_DATA_LOADED:
                             "all_drawings"
                         ][0]["geometry"]["coordinates"]
 
-    print(st.session_state["disaster_area"])
-
     if st.session_state["disaster_area"] is not None:
         disaster_bounds = st.session_state["disaster_area"][0]
 
@@ -161,7 +159,7 @@ if IS_DATA_LOADED:
                     distance_matrix,
                 ),
                 width=1000,
-                height=500,
+                height=600,
             )
 
     if (
@@ -235,5 +233,3 @@ if IS_DATA_LOADED:
                         )
                     else:
                         st.write(route)
-
-        st.write(model_["demand"])
