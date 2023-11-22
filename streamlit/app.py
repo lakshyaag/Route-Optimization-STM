@@ -210,8 +210,6 @@ if IS_DATA_LOADED:
                     height=500,
                 )
 
-                model_["bus_path_df"].to_csv(f"path_{SPLIT_TYPE}.csv", index=False)
-
                 st.markdown("#### **Routes**")
                 for path, route in model_["paths"].items():
                     stop_names = random_stops_df_gpd[
