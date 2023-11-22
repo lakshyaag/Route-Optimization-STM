@@ -246,7 +246,7 @@ def plot_routes(
             locations=[(p[1], p[0]) for p in route.geometry.coords],
             color=colormap_route[route.bus],
             weight=3,
-            opacity=0.5,
+            opacity=0.6,
             tooltip=f"Route {route.bus}",
             popup=f"""
             <div>
