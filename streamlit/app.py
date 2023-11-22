@@ -34,7 +34,7 @@ with st.sidebar:
         "Distance threshold (in kms)", min_value=1, max_value=10, value=5
     )
     TIME_LIMIT = st.slider(
-        "Time Limit (in seconds)", min_value=60, max_value=300, value=180
+        "Time Limit (in seconds)", min_value=60, max_value=900, value=180
     )
     LOG_TO_CONSOLE = st.selectbox(
         "Log to Console", [0, 1], 1, format_func=lambda x: "Yes" if x == 1 else "No"
@@ -71,11 +71,11 @@ else:
 
 
 if IS_DATA_LOADED:
-    route_list = ["24", "51", "67", "18", "33", "45", "80"]
+    route_list = ["24", "51", "67", "18", "105", "45", "80", "55"]
 
     stops_df_gpd = load.get_stops_on_route(route_list, segments_df, stops_df)
 
-    random_stops_df_gpd = load.get_random_stops(stops_df_gpd, 25)
+    random_stops_df_gpd = load.get_random_stops(stops_df_gpd, 30, 662)
 
     col1, col2 = st.columns(2)
 
@@ -138,6 +138,8 @@ if IS_DATA_LOADED:
                             "all_drawings"
                         ][0]["geometry"]["coordinates"]
 
+    print(st.session_state["disaster_area"])
+
     if st.session_state["disaster_area"] is not None:
         disaster_bounds = st.session_state["disaster_area"][0]
 
@@ -184,7 +186,7 @@ if IS_DATA_LOADED:
                         DEMAND_LIMIT,
                         DISTANCE_THRESHOLD,
                         SPLIT_TYPE,
-                        0.2,
+                        0.1,
                         TIME_LIMIT,
                         LOG_TO_CONSOLE,
                     )
@@ -210,6 +212,8 @@ if IS_DATA_LOADED:
                     height=500,
                 )
 
+                model_["bus_path_df"].to_csv(f"path_{SPLIT_TYPE}.csv", index=False)
+
                 st.markdown("#### **Routes**")
                 for path, route in model_["paths"].items():
                     stop_names = random_stops_df_gpd[
@@ -231,3 +235,5 @@ if IS_DATA_LOADED:
                         )
                     else:
                         st.write(route)
+
+        st.write(model_["demand"])
