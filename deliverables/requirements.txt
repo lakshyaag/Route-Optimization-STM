@@ -1,0 +1,11 @@
+folium==0.14.0
+geopandas==0.13.2
+gurobipy==10.0.2
+matplotlib==3.7.1
+networkx==3.2
+numpy==1.24.4
+osmnx==1.7.1
+pandas==1.5.3
+Shapely==2.0.2
+streamlit==1.27.2
+streamlit_folium==0.15.0

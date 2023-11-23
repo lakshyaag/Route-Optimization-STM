@@ -24,26 +24,31 @@ if "model_" not in st.session_state:
 # Page configuration
 st.set_page_config(page_title="MGSC 662 - Route Optimization Model", layout="wide")
 
-st.sidebar.header("Model parameters")
+st.sidebar.markdown("# Parameters")
 # Use sliders, number inputs, etc., to get user input
 with st.sidebar:
+    st.markdown("### Model parameters")
+    NUM_STOPS = st.number_input("Number of Stops", min_value=10, max_value=40, value=15)
     NUM_BUSES = st.number_input("Number of Buses", min_value=1, value=15)
     BUS_CAPACITY = st.number_input("Bus Capacity", min_value=1, value=80)
     DEMAND_LIMIT = st.number_input("Demand Limit", min_value=1, value=120)
     DISTANCE_THRESHOLD = st.slider(
         "Distance threshold (in kms)", min_value=1, max_value=10, value=5
     )
-    TIME_LIMIT = st.slider(
-        "Time Limit (in seconds)", min_value=60, max_value=900, value=180
-    )
-    LOG_TO_CONSOLE = st.selectbox(
-        "Log to Console", [0, 1], 1, format_func=lambda x: "Yes" if x == 1 else "No"
-    )
     SPLIT_TYPE = st.selectbox(
         "Split Type",
         ["geometric", "capacity", "random"],
         0,
         format_func=lambda x: x.lower().capitalize(),
+    )
+
+    st.markdown("### Solver parameters")
+    TIME_LIMIT = st.slider(
+        "Time Limit (in seconds)", min_value=60, max_value=900, value=180
+    )
+    MIP_GAP = st.slider("MIP Gap", min_value=0.01, max_value=1.0, value=0.1, step=0.05)
+    LOG_TO_CONSOLE = st.selectbox(
+        "Log to Console", [0, 1], 1, format_func=lambda x: "Yes" if x == 1 else "No"
     )
 
 
@@ -75,7 +80,7 @@ if IS_DATA_LOADED:
 
     stops_df_gpd = load.get_stops_on_route(route_list, segments_df, stops_df)
 
-    random_stops_df_gpd = load.get_random_stops(stops_df_gpd, 25, 662)
+    random_stops_df_gpd = load.get_random_stops(stops_df_gpd, NUM_STOPS, 662)
 
     col1, col2 = st.columns(2)
 
@@ -184,7 +189,7 @@ if IS_DATA_LOADED:
                         DEMAND_LIMIT,
                         DISTANCE_THRESHOLD,
                         SPLIT_TYPE,
-                        0.1,
+                        MIP_GAP,
                         TIME_LIMIT,
                         LOG_TO_CONSOLE,
                     )
