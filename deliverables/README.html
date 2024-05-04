@@ -1,76 +1,122 @@
 <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>MGSC 662 - Decision Analytics - Project</title>
-        <style>
-/* From extension vscode.github */
-/*---------------------------------------------------------------------------------------------
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MGSC 662 - Decision Analytics - Project</title>
+    <style>
+      /* From extension vscode.github */
+      /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-.vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
-	display: none;
-}
+      .vscode-dark img[src$="\#gh-light-mode-only"],
+      .vscode-light img[src$="\#gh-dark-mode-only"] {
+        display: none;
+      }
+    </style>
 
-</style>
-        
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
-<style>
-            body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
-                font-size: 14px;
-                line-height: 1.6;
-            }
-        </style>
-        <style>
-.task-list-item {
-    list-style-type: none;
-}
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css"
+    />
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI",
+          system-ui, "Ubuntu", "Droid Sans", sans-serif;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+    </style>
+    <style>
+      .task-list-item {
+        list-style-type: none;
+      }
 
-.task-list-item-checkbox {
-    margin-left: -20px;
-    vertical-align: middle;
-    pointer-events: none;
-}
-</style>
-        
-    </head>
-    <body class="vscode-body vscode-light">
-        <h1 id="mgsc-662---decision-analytics---project">MGSC 662 - Decision Analytics - Project</h1>
-<p>This repository contains the code and data for the final project for MGSC 662 - Decision Analytics. The final project is a part of the course curriculum for the Master of Management in Analytics (MMA) program at the Desautels Faculty of Management, McGill University.</p>
-<h2 id="report">Report</h2>
-<p>The report for the project can be found <a href="./deliverables/MGSC_662-Final_Project_Report-Group_3.pdf">here</a>.</p>
-<h2 id="how-to-run">How to run</h2>
-<p>We present 2 ways to run the optimization model:</p>
-<h3 id="jupyter-notebook">Jupyter Notebook</h3>
-<ol>
-<li>Run the first cell to install all the necessary packages</li>
-<li>Choose the bus routes to consider, the number of stops, the depot location, and the disaster area by changing these variables:
-<ul>
-<li><code>routes</code>: list of bus routes to consider</li>
-<li><code>NUM_STOPS</code>: number of stops to consider</li>
-<li><code>depot</code>: depot location in <code>add_depot</code> (lat, lon)</li>
-<li><code>disaster_area</code>: disaster area in <code>add_disaster_area</code> (lat1, lon1, lat2, lon2)</li>
-</ul>
-</li>
-<li>Run all cells to load the necessary functions to run the optimization model (till &quot;Run this model&quot; section)</li>
-<li>Choose the model parameters such as <code>NUM_BUSES</code>, <code>BUS_CAPACITY</code>, <code>DEMAND_LIMIT</code>, <code>DISTANCE_THRESHOLD</code> and solver parameters such as <code>TIME_LIMIT</code> and <code>MIPGap</code></li>
-<li>Run the specific type of model by choosing <code>split_type</code> among <code>geometric</code>, <code>capacity</code>, <code>random</code>, and <code>equal</code></li>
-<li>Call the <code>view_model</code> on the output of the above execution to see the model and the results</li>
-</ol>
-<h3 id="streamlit-application">Streamlit Application</h3>
-<ol>
-<li>Run <code>pip install -r requirements.txt</code> to install all the necessary packages</li>
-<li>Run <code>streamlit run streamlit/app.py</code> to run the app</li>
-<li>Add a depot location, wait for the distance matrix to be calculated, and then add a disaster area</li>
-<li>Choose the model and solver parameters and run the model</li>
-</ol>
-
-        
-        
-    </body>
-    </html>
+      .task-list-item-checkbox {
+        margin-left: -20px;
+        vertical-align: middle;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body class="vscode-body vscode-light">
+    <h1 id="mgsc-662---decision-analytics---project">
+      MGSC 662 - Decision Analytics - Project
+    </h1>
+    <p>
+      This repository contains the code and data for the final project for MGSC
+      662 - Decision Analytics. The final project is a part of the course
+      curriculum for the Master of Management in Analytics (MMA) program at the
+      Desautels Faculty of Management, McGill University.
+    </p>
+    <h2 id="report">Report</h2>
+    <p>
+      The report for the project can be found
+      <a href="./MGSC_662-Final_Project_Report-Group_3.pdf">here</a>.
+    </p>
+    <h2 id="how-to-run">How to run</h2>
+    <p>
+      Unzip the file <code>group_3_code.zip</code> to your local machine to run
+      this model.
+    </p>
+    <p>We present 2 ways to run the optimization model:</p>
+    <h3 id="jupyter-notebook">Jupyter Notebook</h3>
+    <ol>
+      <li>Run the first cell to install all the necessary packages</li>
+      <li>
+        Choose the bus routes to consider, the number of stops, the depot
+        location, and the disaster area by changing these variables:
+        <ul>
+          <li><code>routes</code>: list of bus routes to consider</li>
+          <li><code>NUM_STOPS</code>: number of stops to consider</li>
+          <li>
+            <code>depot</code>: depot location in <code>add_depot</code> (lat,
+            lon)
+          </li>
+          <li>
+            <code>disaster_area</code>: disaster area in
+            <code>add_disaster_area</code> (lat1, lon1, lat2, lon2)
+          </li>
+        </ul>
+      </li>
+      <li>
+        Run all cells to load the necessary functions to run the optimization
+        model (till &quot;Run this model&quot; section)
+      </li>
+      <li>
+        Choose the model parameters such as <code>NUM_BUSES</code>,
+        <code>BUS_CAPACITY</code>, <code>DEMAND_LIMIT</code>,
+        <code>DISTANCE_THRESHOLD</code> and solver parameters such as
+        <code>TIME_LIMIT</code> and <code>MIPGap</code>
+      </li>
+      <li>
+        Run the specific type of model by choosing <code>split_type</code> among
+        <code>geometric</code>, <code>capacity</code>, <code>random</code>, and
+        <code>equal</code>
+      </li>
+      <li>
+        Call the <code>view_model</code> on the output of the above execution to
+        see the model and the results
+      </li>
+    </ol>
+    <h3 id="streamlit-application">Streamlit Application</h3>
+    <ol>
+      <li>
+        Run <code>pip install -r requirements.txt</code> to install all the
+        necessary packages
+      </li>
+      <li>Run <code>streamlit run app.py</code> to run the app</li>
+      <li>
+        Add a depot location, wait for the distance matrix to be calculated, and
+        then add a disaster area
+      </li>
+      <li>Choose the model and solver parameters and run the model</li>
+    </ol>
+  </body>
+</html>
