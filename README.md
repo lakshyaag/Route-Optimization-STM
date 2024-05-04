@@ -1,14 +1,34 @@
-# MGSC 662 - Decision Analytics - Project
+# Route Optimization - STM
 
 This repository contains the code and data for the final project for MGSC 662 - Decision Analytics. The final project is a part of the course curriculum for the Master of Management in Analytics (MMA) program at the Desautels Faculty of Management, McGill University.
 
-## Report
+## Main Objective
 
-The report for the project can be found [here](./deliverables/MGSC_662-Final_Project_Report-Group_3.pdf).
+The primary objective of this project is to develop an advanced optimization system focused on enhancing disaster response through intelligent route planning for bus-based evacuations in Montreal. In emergencies, traditional transit systems often become disrupted, emphasizing the need for efficient, adaptable evacuation operations. The project aims to utilize the city's existing transit infrastructure effectively while introducing flexible measures to ensure rapid and safe evacuation during times of crisis. An example solution can be seen below:
+
+![Figure 1](./report/capacity-network.png)
+
+## Problem Description and Formulation
+
+### Data Collection and Preparation
+
+A comprehensive data collection pipeline forms the foundation of the Capacitated Vehicle Routing Problem (CVRP) model. The General Transit Feed Specification (GTFS) data from [Société de transport de Montréal](https://www.stm.info/en/about/developers) was used for detailed transit routes, schedules, and stop information. Additionally, road distances between all nodes were obtained via the [OSMnx](https://osmnx.readthedocs.io/en/stable/) package, providing information on the actual travel distances within the city's road network. The collected data was cleaned and preprocessed to ensure compatibility with the modeling environment and to establish a reliable baseline for the optimization process.
+
+### Mathematical Formulation of the Capacitated Vehicle Routing Problem (CVRP)
+
+The [CVRP model](https://developers.google.com/optimization/routing/cvrp) is formulated as a combinatorial optimization problem that seeks to identify the optimal set of routes for a fleet of buses tasked with evacuating residents to designated shelters. The model considers various parameters such as the set of all stops, disaster-stops, serviceable stops, distances between nodes, demand at each node, bus capacity, and the number of buses. The objective function minimizes the total distance traveled by all buses, subject to several constraints ensuring feasible routes and efficient evacuation operations.
+
+### Split Delivery VRP
+
+To address scenarios where the demand at a node exceeds the capacity of a single bus, the project introduces a series of algorithms to convert the CVRP into a Split Delivery VRP (SD-VRP). The idea is to split each node with demand exceeding bus capacity into multiple nodes with smaller demands. Different split methods, such as geometric split, capacity-based split, random split, and equal split, are explored and compared to balance the number of nodes and demand at each node.
+
+### Report
+
+For a detailed report of the project, please see [here](./deliverables/MGSC_662-Final_Project_Report-Group_3.pdf).
 
 ## How to run
 
-We present 2 ways to run the optimization model:
+We present 2 ways to reproduce the project and run the optimization model locally:
 
 ### Jupyter Notebook
 
